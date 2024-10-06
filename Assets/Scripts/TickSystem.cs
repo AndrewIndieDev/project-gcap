@@ -8,6 +8,7 @@ public class TickSystem : MonoBehaviour
 
     public static ulong currentTick;
 
+    [Range(0,120)]
     public int ticksPerSecond = 60;
 
     private float tickTime => 1f / ticksPerSecond;
