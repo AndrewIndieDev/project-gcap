@@ -61,7 +61,7 @@ public class AIRangeSensor : MonoBehaviour
                 }  
             }
 
-            if (!TargetEntity)
+            if(!TargetEntity)
                 storedTargetEntity = null;
         } else if(storedTargetEntity != null)
             TargetEntity = storedTargetEntity;

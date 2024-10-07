@@ -35,6 +35,13 @@ public class HuntState : BaseState
         else if (Utilities.Buffer(ref fledTimer, fledTime))
         {
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
+            return;
+        }
+
+        if(Vector3.Distance(aiBase.transform.position, aiBase.rangeSensor.TargetEntity.transform.position) < 1.5f)
+        {
+            stateMachine.ChangeState(new AttackState(aiBase, stateMachine));
+            return;
         }
     }
 }

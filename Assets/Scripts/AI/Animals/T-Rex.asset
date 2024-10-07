@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: T-Rex
   m_EditorClassIdentifier: 
   AnimalName: T-Rex
-  AnimalVisual: {fileID: 0}
+  AnimalVisual: {fileID: 8442880431138410647, guid: 861852b3495096640a6fdfd8899af6e3,
+    type: 3}
   AnimalDesc: 
   AnimalIcon: {fileID: 0}
   AnimalFaction: {fileID: 11400000, guid: 2f1fe7e2fda17aa4ba71253502ad10e3, type: 2}

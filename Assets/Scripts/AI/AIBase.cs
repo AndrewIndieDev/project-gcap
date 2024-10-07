@@ -7,6 +7,7 @@ public class AIBase : MonoBehaviour
     public Transform visualRoot;
     public Animator anim;
     public AIRangeSensor rangeSensor;
+    public Health health;
 
     public void Start()
     {
@@ -23,6 +24,7 @@ public class AIBase : MonoBehaviour
         go.transform.localPosition = Vector3.zero;
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
+        health = GetComponent<Health>();
     }
 
     public void ChangeAnimation(EAnimRef animation)
