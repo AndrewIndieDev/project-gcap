@@ -20,7 +20,7 @@ public class AIStateMachine : MonoBehaviour
             if(aiBase.animal.AnimalFaction.factionName == "Plant")
                 currentState = new PlantState(aiBase, this);
             else
-                currentState = new IdleState(aiBase, this);
+                currentState = new WanderState(aiBase, this);
         }
     }
 

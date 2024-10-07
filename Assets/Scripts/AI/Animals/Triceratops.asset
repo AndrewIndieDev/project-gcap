@@ -21,5 +21,5 @@ MonoBehaviour:
   AnimalCost: 10
   Health: 100
   Energy: 100
-  Speed: 3.5
+  Speed: 1.15
   ScorePerTick: 1

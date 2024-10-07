@@ -7,6 +7,9 @@ public class IdleState : BaseState
     AIBase aiBase;
     AIStateMachine stateMachine;
 
+    float idleTimer, idleTime;
+    float minTime, maxTime = 5f;
+
     public IdleState(AIBase ai, AIStateMachine stateMachine) : base(ai, stateMachine)
     {
         this.aiBase = ai;
@@ -15,6 +18,8 @@ public class IdleState : BaseState
 
     public override void Enter(BaseState previousState)
     {
+        aiBase.ChangeAnimation(EAnimRef.IDLE);
+        idleTime = Random.Range(minTime, maxTime);
     }
 
     public override void Exit()
@@ -23,6 +28,12 @@ public class IdleState : BaseState
 
     public override void TickLogic()
     {
-
+        //Range Check
+        
+        if(Utilities.Buffer(ref idleTimer, idleTime))
+        {
+            stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
+            return;
+        }
     }
 }

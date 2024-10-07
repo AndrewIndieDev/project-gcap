@@ -6,6 +6,7 @@ public class AIBase : MonoBehaviour
     public AINavigation Navigation;
     public Transform visualRoot;
     public Animator anim;
+    public AIRangeSensor rangeSensor;
 
     public void Start()
     {
@@ -28,5 +29,16 @@ public class AIBase : MonoBehaviour
     {
         anim.SetInteger("State", (int)animation);
         anim.SetBool("Reset", true);
+    }
+
+    public bool CheckRangeSensor()
+    {
+        if (!rangeSensor)
+            return false;
+
+        if(rangeSensor.TargetEntity != null)
+            return true;
+        
+        return false;
     }
 }
