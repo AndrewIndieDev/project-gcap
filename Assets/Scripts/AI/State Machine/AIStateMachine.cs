@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static TickSystem;
 
 [RequireComponent(typeof(AIBase))]
 public class AIStateMachine : MonoBehaviour
 {
     public BaseState currentState;
     AIBase aiBase;
+    int tickIndex = -1;
     
     // Start is called before the first frame update
     void Start()
     {
         TickSystem.onTick += OnTick;
+        tickIndex = TickSystem.CurrentTickIndex;
         aiBase = GetComponent<AIBase>();
 
         if (aiBase.animal)
@@ -22,12 +21,19 @@ public class AIStateMachine : MonoBehaviour
             else
                 ChangeState(new WanderState(aiBase, this));
         }
+
+        currentState.TickLogic();
     }
 
-    void OnTick()
+    void OnTick(int tickIndex)
     {
-        if (currentState != null)
+        if (currentState != null /*&& tickIndex == this.tickIndex*/)
             currentState.TickLogic();
+
+        if (!(currentState is DeathState) && aiBase.animal.ScorePerTick != 0)
+        {
+            PointSystem.AddPoints(aiBase.animal.ScorePerTick);
+        }
     }
 
     public void ChangeState(BaseState newState)

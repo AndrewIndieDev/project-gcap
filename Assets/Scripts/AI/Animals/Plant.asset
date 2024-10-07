@@ -21,3 +21,4 @@ MonoBehaviour:
   Health: 100
   Energy: 100
   Speed: 3.5
+  ScorePerTick: 0

@@ -5,5 +5,5 @@ public class PointSystemVisual : MonoBehaviour
 {
     public TMP_Text pointVisual;
     private void Start() => TickSystem.onTick += OnTick;
-    private void OnTick() => pointVisual.text = PointSystem.ToString();
+    private void OnTick(int tickIndex) => pointVisual.text = PointSystem.ToString();
 }

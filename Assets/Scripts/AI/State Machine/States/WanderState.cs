@@ -22,7 +22,7 @@ public class WanderState : BaseState
     public override void Enter(BaseState previousState)
     {
         aiBase.ChangeAnimation(EAnimRef.WALK);
-        wanderTime = Random.Range(wanderMin, wanderMax);
+        wanderTime = Random.Range(wanderMin, wanderMax) /* / TickSystem.UpdateAnimalsEveryXTicks*/;
         wanderPointTimer = wanderPointTime;
     }
 

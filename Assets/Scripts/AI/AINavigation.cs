@@ -28,6 +28,6 @@ public class AINavigation : MonoBehaviour
 
     public void ResetNavigation()
     {
-        UpdatePosition(transform.position);
+        targetPosition = transform.position;
     }
 }

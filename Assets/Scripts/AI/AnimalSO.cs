@@ -14,5 +14,5 @@ public class AnimalSO : ScriptableObject
     public double Health = 100;
     public double Energy = 100;
     public float Speed = 3.5f;
-    public int ScorePerTick = 1;
+    public ulong ScorePerTick = 1;
 }

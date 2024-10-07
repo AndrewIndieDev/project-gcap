@@ -19,7 +19,7 @@ public class IdleState : BaseState
     public override void Enter(BaseState previousState)
     {
         aiBase.ChangeAnimation(EAnimRef.IDLE);
-        idleTime = Random.Range(minTime, maxTime);
+        idleTime = Random.Range(minTime, maxTime) /* / TickSystem.UpdateAnimalsEveryXTicks*/;
         aiBase.Navigation.ResetNavigation();
     }
 

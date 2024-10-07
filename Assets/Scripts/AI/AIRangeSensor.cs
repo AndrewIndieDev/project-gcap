@@ -29,7 +29,7 @@ public class AIRangeSensor : MonoBehaviour
     }
 
     // Update is called once per tick
-    void OnTick()
+    void OnTick(int tickIndex)
     {
         nearbyEntities.Clear();
         storedTargetEntity = TargetEntity;
