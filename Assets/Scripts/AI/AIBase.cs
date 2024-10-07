@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class AIBase : MonoBehaviour
 {
-    [SerializeField] public AnimalSO animal;
-    [SerializeField] public AINavigation Navigation;
+    public AnimalSO animal;
+    public AINavigation Navigation;
+    public Transform visualRoot;
+    public Animator anim;
 
     public void Start()
     {
@@ -19,5 +18,10 @@ public class AIBase : MonoBehaviour
             return;
 
         Navigation.agent.speed = animal.Speed;
+        GameObject go = Instantiate(animal.AnimalVisual, visualRoot);
+        go.transform.localPosition = Vector3.zero;
+        go.transform.localRotation = Quaternion.identity;
+        anim = go.GetComponent<Animator>();
+        //anim.SetInteger("State", (int)EAnimRef.WALK);
     }
 }

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Triceratops
   m_EditorClassIdentifier: 
   AnimalName: Triceratops
-  AnimalVisual: {fileID: 0}
+  AnimalVisual: {fileID: 3852698128308450981, guid: 0783bb47bce0983489116dc925da134e,
+    type: 3}
   AnimalDesc: 
-  AnimalIcon: {fileID: 0}
+  AnimalIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   AnimalFaction: {fileID: 11400000, guid: caf499e2db949134482a9af45ab87b8f, type: 2}
   AnimalCost: 10
   Health: 100
   Energy: 100
   Speed: 3.5
+  ScorePerTick: 1
