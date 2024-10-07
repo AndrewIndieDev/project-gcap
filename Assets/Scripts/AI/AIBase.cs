@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class AIBase : MonoBehaviour
 {
-    [SerializeField] BaseStateMachine stateMachine;
-    
-    private void Start()
-    {
-        TickSystem.onTick += OnTick;
-        if (stateMachine != null)
-            stateMachine.Initialize(this);
-    }
-
-    private void OnTick()
-    {
-        if (stateMachine != null)
-            stateMachine.OnTick();
-    }
+    [SerializeField] AnimalSO animal;
+    [SerializeField] public AINavigation Navigation;
 }

@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class AINavigation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void MoveAnimalTest()
     {
-        
+        transform.position += Vector3.forward;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ResetNavigationRate()
     {
-        
+        //idk do nothing;
     }
 }

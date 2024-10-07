@@ -1,16 +1,15 @@
 public abstract class BaseState
 {
     protected AIBase ai;
-    protected BaseStateMachine stateMachine;
+    protected AIStateMachine stateMachine;
 
-    public BaseState(AIBase ai, BaseStateMachine stateMachine)
+    public BaseState(AIBase ai, AIStateMachine stateMachine)
     {
         this.ai = ai;
         this.stateMachine = stateMachine;
     }
 
-    public abstract void Enter(BaseStateMachine stateMachine, BaseState previousState);
-    public abstract void OnTick(BaseStateMachine stateMachine);
-    public abstract void Exit(BaseStateMachine stateMachine);
+    public abstract void Enter(BaseState previousState);
+    public abstract void TickLogic();
+    public abstract void Exit();
 }
-
