@@ -34,7 +34,9 @@ public class AttackState : BaseState
                 stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
 
             if (aiBase.CheckRangeSensor())
-                aiBase.rangeSensor.TargetEntity.health.Damage(1);
+            {
+                aiBase.rangeSensor.TargetEntity.health.Damage(aiBase.animal.attackDamage);
+            }
             return;
         }
 

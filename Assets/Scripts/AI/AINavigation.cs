@@ -29,5 +29,6 @@ public class AINavigation : MonoBehaviour
     public void ResetNavigation()
     {
         targetPosition = transform.position;
+        agent.SetDestination(targetPosition);
     }
 }

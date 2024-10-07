@@ -15,6 +15,8 @@ public class DeathState : BaseState
 
     public override void Enter(BaseState previousState)
     {
+        aiBase.Navigation.ResetNavigation();
+        aiBase.ChangeAnimation(EAnimRef.DEATH);
     }
 
     public override void Exit()

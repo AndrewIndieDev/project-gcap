@@ -48,4 +48,9 @@ public class AIStateMachine : MonoBehaviour
         currentState = newState;
         currentState.Enter(oldState);
     }
+
+    public void OverrideStateToDeath()
+    {
+        ChangeState(new DeathState(aiBase, this));
+    }
 }

@@ -58,6 +58,9 @@ public class Health : MonoBehaviour, IDamagable
     }
 
     public void Damage(float amount) {
+        if (health <= 0)
+            return;
+
         elapsedTime = 0f;
         pTakeDamage.Invoke();
         health = Mathf.Clamp(health - amount, 0, maxHealth);
