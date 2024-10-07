@@ -29,9 +29,10 @@ public class IdleState : BaseState
 
     public override void TickLogic()
     {
-        //Range Check
-        
-        if(Utilities.Buffer(ref idleTimer, idleTime))
+        if (aiBase.CheckRangeSensor())
+            stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
+
+        if (Utilities.Buffer(ref idleTimer, idleTime))
         {
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
             return;

@@ -32,10 +32,8 @@ public class WanderState : BaseState
 
     public override void TickLogic()
     {
-        /*
         if (aiBase.CheckRangeSensor())
             stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
-        */
 
         if (Utilities.Buffer(ref wanderTimer, wanderTime))
         {
