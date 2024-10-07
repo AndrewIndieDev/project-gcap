@@ -1,13 +1,20 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AINavigation : MonoBehaviour
 {
-    public void MoveAnimalTest()
+    public NavMeshAgent agent;
+
+    Vector3 targetPosition = Vector3.zero;
+
+    public void UpdatePosition(Vector3 position)
     {
-        transform.position += Vector3.forward;
+        targetPosition = position;
+        agent.SetDestination(targetPosition);
     }
+
     public void ResetNavigationRate()
     {
-        //idk do nothing;
+        targetPosition = transform.position;
     }
 }

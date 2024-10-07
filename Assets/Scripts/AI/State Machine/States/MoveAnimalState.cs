@@ -23,6 +23,6 @@ public class MoveAnimalState : BaseState
 
     public override void TickLogic()
     {
-        aiBase.gameObject.transform.position += Vector3.forward;
+        aiBase.Navigation.UpdatePosition(Vector3.forward * 10);
     }
 }

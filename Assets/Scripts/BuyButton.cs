@@ -8,12 +8,12 @@ public class BuyButton : MonoBehaviour
 
     private void Start()
     {
-        buyIcon.sprite = buyReference.animalSprite;
+        buyIcon.sprite = buyReference.AnimalIcon;
     }
 
     public void Buy()
     {
-        if (PointSystem.RemovePoints(buyReference.animalCost))
+        if (PointSystem.RemovePoints(buyReference.AnimalCost))
             Instantiate(GameManager.Instance.animalPrefab, new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)), Quaternion.identity);
     }
 }
