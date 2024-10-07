@@ -7,10 +7,6 @@ using static TickSystem;
 public class AIStateMachine : MonoBehaviour
 {
     public BaseState currentState;
-
-    //States
-    public MoveAnimalState moveState;
-
     AIBase aiBase;
     
     // Start is called before the first frame update
@@ -18,8 +14,14 @@ public class AIStateMachine : MonoBehaviour
     {
         TickSystem.onTick += OnTick;
         aiBase = GetComponent<AIBase>();
-        moveState = new MoveAnimalState(aiBase, this);
-        currentState = moveState;
+
+        if (aiBase.animal)
+        {
+            if(aiBase.animal.AnimalFaction.factionName == "Plant")
+                currentState = new PlantState(aiBase, this);
+            else
+                currentState = new IdleState(aiBase, this);
+        }
     }
 
     void OnTick()

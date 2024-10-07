@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AIBase : MonoBehaviour
 {
-    [SerializeField] AnimalSO animal;
+    [SerializeField] public AnimalSO animal;
     [SerializeField] public AINavigation Navigation;
 
     public void Start()
