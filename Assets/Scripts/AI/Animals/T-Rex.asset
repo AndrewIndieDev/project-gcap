@@ -16,10 +16,11 @@ MonoBehaviour:
   AnimalVisual: {fileID: 8442880431138410647, guid: 861852b3495096640a6fdfd8899af6e3,
     type: 3}
   AnimalDesc: 
-  AnimalIcon: {fileID: 0}
+  AnimalIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   AnimalFaction: {fileID: 11400000, guid: 2f1fe7e2fda17aa4ba71253502ad10e3, type: 2}
-  AnimalCost: 10
+  AnimalCost: 1
   Health: 100
   Energy: 100
-  Speed: 3.5
+  attackDamage: 10
+  Speed: 2.2
   ScorePerTick: 1
