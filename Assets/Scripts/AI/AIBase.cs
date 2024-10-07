@@ -22,6 +22,11 @@ public class AIBase : MonoBehaviour
         go.transform.localPosition = Vector3.zero;
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
-        //anim.SetInteger("State", (int)EAnimRef.WALK);
+    }
+
+    public void ChangeAnimation(EAnimRef animation)
+    {
+        anim.SetInteger("State", (int)animation);
+        anim.SetBool("Reset", true);
     }
 }
