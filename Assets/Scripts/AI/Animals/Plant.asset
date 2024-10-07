@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 734f45cf869a7bd4aafb8eb6d541d1f2, type: 3}
-  m_Name: T-Rex
+  m_Name: Plant
   m_EditorClassIdentifier: 
-  animalName: T-Rex
+  animalName: Plant
   animalDesc: 
-  animalSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  animalFaction: {fileID: 11400000, guid: 2f1fe7e2fda17aa4ba71253502ad10e3, type: 2}
-  animalCost: 100
+  animalSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  animalFaction: {fileID: 11400000, guid: 5faef4f0df5978441b533b30a2a532a2, type: 2}
+  animalCost: 10
