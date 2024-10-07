@@ -26,8 +26,8 @@ public class AINavigation : MonoBehaviour
         return navHit.position;
     }
 
-    public void ResetNavigationRate()
+    public void ResetNavigation()
     {
-        targetPosition = transform.position;
+        UpdatePosition(transform.position);
     }
 }

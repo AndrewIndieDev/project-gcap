@@ -8,7 +8,7 @@ public class IdleState : BaseState
     AIStateMachine stateMachine;
 
     float idleTimer, idleTime;
-    float minTime, maxTime = 5f;
+    float minTime = 5f, maxTime = 10f;
 
     public IdleState(AIBase ai, AIStateMachine stateMachine) : base(ai, stateMachine)
     {
@@ -20,6 +20,7 @@ public class IdleState : BaseState
     {
         aiBase.ChangeAnimation(EAnimRef.IDLE);
         idleTime = Random.Range(minTime, maxTime);
+        aiBase.Navigation.ResetNavigation();
     }
 
     public override void Exit()

@@ -17,10 +17,10 @@ public class AIStateMachine : MonoBehaviour
 
         if (aiBase.animal)
         {
-            if(aiBase.animal.AnimalFaction.factionName == "Plant")
-                currentState = new PlantState(aiBase, this);
+            if (aiBase.animal.AnimalFaction.factionName == "Plant")
+                ChangeState(new PlantState(aiBase, this));
             else
-                currentState = new WanderState(aiBase, this);
+                ChangeState(new WanderState(aiBase, this));
         }
     }
 
@@ -32,11 +32,11 @@ public class AIStateMachine : MonoBehaviour
 
     public void ChangeState(BaseState newState)
     {
-        Debug.Log($"[AI] Changing state from {currentState} to {newState}.");
+        Debug.Log($"[AI] Changing state from {(currentState != null ? currentState : "<null>")} to {(newState != null ? newState : "<null>")}.");
 
         if (currentState != null)
             currentState.Exit();
-        aiBase.Navigation.ResetNavigationRate();
+        aiBase.Navigation.ResetNavigation();
         BaseState oldState = currentState;
 
         currentState = newState;

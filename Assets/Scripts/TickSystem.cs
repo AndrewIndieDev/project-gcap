@@ -6,12 +6,9 @@ public class TickSystem : MonoBehaviour
     public delegate void Tick();
     public static Tick onTick;
 
-    public static ulong currentTick;
-
-    [Range(0,120)]
-    public int ticksPerSecond = 60;
-
-    private float tickTime => 1f / ticksPerSecond;
+    public static ulong CurrentTick;
+    public static int TicksPerSecond = 60;
+    public static float TickTime => 1f / TicksPerSecond;
 
     private void Start()
     {
@@ -22,9 +19,9 @@ public class TickSystem : MonoBehaviour
     {
         while (true)
         {
-            currentTick++;
+            CurrentTick++;
             onTick?.Invoke();
-            yield return new WaitForSeconds(tickTime);
+            yield return new WaitForSeconds(TickTime);
         }
     }
 }

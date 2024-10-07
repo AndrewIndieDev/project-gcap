@@ -11,7 +11,7 @@ public class WanderState : BaseState
     float wanderPointTimer, wanderPointTime = 5f;
 
     float wanderTimer, wanderTime = 10f;
-    float wanderMin, wanderMax = 20f;
+    float wanderMin = 5f, wanderMax = 20f;
 
     public WanderState(AIBase ai, AIStateMachine stateMachine) : base(ai, stateMachine)
     {
@@ -22,9 +22,8 @@ public class WanderState : BaseState
     public override void Enter(BaseState previousState)
     {
         aiBase.ChangeAnimation(EAnimRef.WALK);
-        wanderPointTimer = wanderPointTime;
-
         wanderTime = Random.Range(wanderMin, wanderMax);
+        wanderPointTimer = wanderPointTime;
     }
 
     public override void Exit()
