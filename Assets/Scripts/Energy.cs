@@ -14,8 +14,11 @@ public class Energy : MonoBehaviour, IEdible
         energy = max;
         maxEnergy = max;
 
-        TickSystem.onTick += OnTick;
+        EnableTick();
     }
+
+    public void EnableTick() => TickSystem.onTick += OnTick;
+    public void DisableTick() => TickSystem.onTick -= OnTick;
 
     public void Modify(float amount)
     {
@@ -24,6 +27,7 @@ public class Energy : MonoBehaviour, IEdible
 
     private void OnTick(int tickIndex)
     {
-        
+        if (energy > 0)
+            energy -= 1;
     }
 }
