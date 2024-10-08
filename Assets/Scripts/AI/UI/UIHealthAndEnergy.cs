@@ -53,6 +53,6 @@ public class UIHealthAndEnergy : MonoBehaviour
             return;
 
         energyBar.fillAmount = Energy.CurrentEnergy / Energy.MaxEnergy;
-        energyGO.SetActive(Energy.CurrentEnergy < (Energy.MaxEnergy*.5f));
+        energyGO.SetActive(Energy.CurrentEnergy < (Energy.MaxEnergy));
     }
 }
