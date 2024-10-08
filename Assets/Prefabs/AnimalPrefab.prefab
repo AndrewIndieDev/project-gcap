@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 5048430328901570348}
   - component: {fileID: 5554849355568602316}
   - component: {fileID: 2931426555886344038}
+  - component: {fileID: -4162959980008470031}
   - component: {fileID: 3458044654727186245}
   m_Layer: 0
   m_Name: AnimalPrefab
@@ -88,6 +89,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   rangeSensor: {fileID: 5554849355568602316}
   health: {fileID: 2931426555886344038}
+  energy: {fileID: 0}
 --- !u!114 &5509739832610871590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,8 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  healthRegenBuffer: 2
-  healthRegenSpeed: 0.1
   pTakeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -196,7 +196,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  regenerateHealth: 0
+--- !u!114 &-4162959980008470031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7773737009177066019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce17719aa74844458f7df9193f1fd5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &3458044654727186245
 CapsuleCollider:
   m_ObjectHideFlags: 0

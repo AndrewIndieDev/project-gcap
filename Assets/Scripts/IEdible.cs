@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IEdible
 {
-    float Energy { get; set; }
-    void Modify(float amount);
+    public float Energy { get; set; }
+    public void Modify(float amount);
 }
