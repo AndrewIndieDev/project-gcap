@@ -49,6 +49,7 @@ public class FleeState : BaseState
             }
         }
 
-        aiBase.Navigation.UpdatePosition((aiBase.transform.position - predator.transform.position).normalized * 10f);
+        Vector3 fleeVector = predator.transform.position - aiBase.transform.position;
+        aiBase.Navigation.UpdatePosition((aiBase.transform.position - fleeVector).normalized * 100f);
     }
 }
