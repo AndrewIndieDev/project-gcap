@@ -34,6 +34,9 @@ public class AttackState : BaseState
         if (Utilities.Buffer(ref attackTimer, attackTime))
         {
             target.health.Damage(aiBase.animal.attackDamage);
+
+            if(target.health.CurrentHealth <= 0)
+                stateMachine.ChangeState(new EatState(aiBase, stateMachine));
             if (Vector3.Distance(aiBase.rangeSensor.ClosestPrey.transform.position, aiBase.transform.position) > 1.5f)
             {
                 stateMachine.ChangeState(new HuntState(aiBase, stateMachine));

@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(AIBase))]
 public class AIStateMachine : MonoBehaviour
 {
+    public string CurrentState;
+    [Space]
     public BaseState currentState;
     AIBase aiBase;
     int tickIndex = -1;
@@ -28,7 +30,10 @@ public class AIStateMachine : MonoBehaviour
     void OnTick(int tickIndex)
     {
         if (currentState != null /*&& tickIndex == this.tickIndex*/)
+        {
             currentState.TickLogic();
+            CurrentState = currentState.ToString();
+        }
 
         if (!(currentState is DeathState) && aiBase.animal.ScorePerTick != 0)
         {
