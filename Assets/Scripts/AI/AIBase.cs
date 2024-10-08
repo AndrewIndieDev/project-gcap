@@ -40,7 +40,7 @@ public class AIBase : MonoBehaviour
 
     public void ChangeAnimation(EAnimRef animation)
     {
-        if (anim == null)
+        if (anim == null || anim.GetInteger("State") == (int)animation)
             return;
 
         anim.SetInteger("State", (int)animation);

@@ -8,6 +8,7 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public AnimalSO buyReference;
     public Image buyIcon;
     public TMP_Text buyAmountVisual;
+    public TMP_Text buyReferenceName;
 
     private bool mouseOver;
     private int buyAmount = 1;
@@ -49,10 +50,12 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
+        buyReferenceName.text = buyReference.AnimalName;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
+        buyReferenceName.text = "";
     }
 }

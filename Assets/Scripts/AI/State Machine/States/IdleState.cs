@@ -29,6 +29,11 @@ public class IdleState : BaseState
 
     public override void TickLogic()
     {
+        if (aiBase.energy.CurrentEnergy <= 0)
+        {
+            stateMachine.ChangeState(new SleepState(aiBase, stateMachine));
+        }
+
         if (aiBase.CheckForPredators())
         {
             stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
