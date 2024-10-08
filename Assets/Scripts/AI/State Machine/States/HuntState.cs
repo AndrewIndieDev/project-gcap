@@ -28,7 +28,8 @@ public class HuntState : BaseState
 
     public override void TickLogic()
     {
-        aiBase.CheckRangeSensor();
+        if (!aiBase.CheckRangeSensor())
+            return;
 
         if (aiBase.rangeSensor.TargetEntity)
             aiBase.Navigation.UpdatePosition(aiBase.rangeSensor.TargetEntity.transform.position);

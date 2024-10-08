@@ -858,6 +858,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5021169623473176850, guid: a9eb4104a474dc4478aa2f93ff8a584d,
         type: 3}
+      propertyPath: animal
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d0cce3950d7de24cad90544c99deae5,
+        type: 2}
+    - target: {fileID: 5021169623473176850, guid: a9eb4104a474dc4478aa2f93ff8a584d,
+        type: 3}
       propertyPath: rangeSensor
       value: 
       objectReference: {fileID: 827956812}
