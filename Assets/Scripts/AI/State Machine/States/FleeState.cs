@@ -20,11 +20,14 @@ public class FleeState : BaseState
     {
         aiBase.ChangeAnimation(EAnimRef.RUN);
         aiBase.Navigation.agent.speed *= 1.5f;
+        predator = aiBase.rangeSensor.ClosestPredator;
 
+        /*
         if (aiBase.CheckForPredators())
             predator = aiBase.rangeSensor.ClosestPredator;
         else
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
+        */
     }
 
     public override void Exit()
@@ -49,7 +52,7 @@ public class FleeState : BaseState
             }
         }
 
-        Vector3 fleeVector = predator.transform.position - aiBase.transform.position;
-        aiBase.Navigation.UpdatePosition((aiBase.transform.position - fleeVector).normalized * 100f);
+        Vector3 fleeVector = (predator.transform.position - aiBase.transform.position).normalized;
+        aiBase.Navigation.UpdatePosition((aiBase.transform.position - fleeVector));
     }
 }
