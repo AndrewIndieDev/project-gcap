@@ -58,4 +58,9 @@ public class AIStateMachine : MonoBehaviour
     {
         ChangeState(new DeathState(aiBase, this));
     }
+
+    public void OverrideStateToFlee()
+    {
+        ChangeState(new FleeState(aiBase, this));
+    }
 }

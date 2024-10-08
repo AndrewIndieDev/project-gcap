@@ -20,14 +20,11 @@ public class FleeState : BaseState
     {
         aiBase.ChangeAnimation(EAnimRef.RUN);
         aiBase.Navigation.agent.speed *= 1.5f;
-        predator = aiBase.rangeSensor.ClosestPredator;
 
-        /*
         if (aiBase.CheckForPredators())
             predator = aiBase.rangeSensor.ClosestPredator;
         else
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
-        */
     }
 
     public override void Exit()

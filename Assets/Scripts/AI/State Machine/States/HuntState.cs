@@ -28,6 +28,12 @@ public class HuntState : BaseState
 
     public override void TickLogic()
     {
+        if(aiBase.CheckForPredators())
+        {
+            stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
+            return;
+        }
+        
         if (!aiBase.CheckForPrey())
             return;
 
