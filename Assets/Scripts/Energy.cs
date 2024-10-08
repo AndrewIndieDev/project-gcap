@@ -3,6 +3,7 @@ using UnityEngine;
 public class Energy : MonoBehaviour, IEdible
 {
     public float CurrentEnergy => energy;
+    public float MaxEnergy => maxEnergy;
 
     float IEdible.Energy { get => energy; set => energy = value; }
     float energy = 1000;
