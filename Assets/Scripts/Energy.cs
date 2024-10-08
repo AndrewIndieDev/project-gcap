@@ -24,6 +24,7 @@ public class Energy : MonoBehaviour, IEdible
 
     private void OnTick(int tickIndex)
     {
-        
+        if (energy > 0)
+            energy -= 1;
     }
 }
