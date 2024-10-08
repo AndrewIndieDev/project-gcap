@@ -4,5 +4,6 @@ using UnityEngine;
 public class FactionSO : ScriptableObject
 {
     public string factionName;
-    public FactionSO[] enemyFactions;
+    public FactionSO[] preyFactions;
+    public FactionSO[] predatorFactions;
 }

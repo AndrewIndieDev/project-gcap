@@ -28,20 +28,29 @@ public class HuntState : BaseState
 
     public override void TickLogic()
     {
-        if (!aiBase.CheckRangeSensor())
+        if (!aiBase.CheckForPrey())
             return;
 
-        if (aiBase.rangeSensor.TargetEntity)
-            aiBase.Navigation.UpdatePosition(aiBase.rangeSensor.TargetEntity.transform.position);
+        if (aiBase.rangeSensor.ClosestPrey)
+            aiBase.Navigation.UpdatePosition(aiBase.rangeSensor.ClosestPrey.transform.position);
         else if (Utilities.Buffer(ref fledTimer, fledTime))
         {
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
             return;
         }
 
-        if(Vector3.Distance(aiBase.transform.position, aiBase.rangeSensor.TargetEntity.transform.position) < 1.5f)
+        if(Vector3.Distance(aiBase.transform.position, aiBase.rangeSensor.ClosestPrey.transform.position) < 1.5f)
         {
-            stateMachine.ChangeState(new AttackState(aiBase, stateMachine));
+            if(aiBase.rangeSensor.ClosestPrey.animal.AnimalFaction.factionName == "Plant")
+                stateMachine.ChangeState(new EatState(aiBase, stateMachine));
+            else
+            {
+                if(aiBase.rangeSensor.ClosestPrey.health.CurrentHealth <= 0)
+                    stateMachine.ChangeState(new EatState(aiBase, stateMachine));
+                else
+                    stateMachine.ChangeState(new AttackState(aiBase, stateMachine, aiBase.rangeSensor.ClosestPrey));
+
+            }
             return;
         }
     }

@@ -32,8 +32,18 @@ public class WanderState : BaseState
 
     public override void TickLogic()
     {
-        if (aiBase.CheckRangeSensor())
+        if (aiBase.CheckForPredators())
+        {
+            stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
+            return;
+        }
+
+        if (aiBase.CheckForPrey())
+        {
             stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
+            return;
+        }
+
 
         if (Utilities.Buffer(ref wanderTimer, wanderTime))
         {

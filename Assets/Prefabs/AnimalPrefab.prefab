@@ -82,12 +82,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c1329e646c253409342c0973e0533b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animal: {fileID: 0}
+  animal: {fileID: 11400000, guid: 5d0cce3950d7de24cad90544c99deae5, type: 2}
   Navigation: {fileID: 5509739832610871590}
   visualRoot: {fileID: 1198070371004882544}
   anim: {fileID: 0}
   rangeSensor: {fileID: 5554849355568602316}
-  health: {fileID: 0}
+  health: {fileID: 2931426555886344038}
 --- !u!114 &5509739832610871590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRange: 10
-  TargetEntity: {fileID: 0}
+  ClosestPrey: {fileID: 0}
+  ClosestPredator: {fileID: 0}
 --- !u!114 &2931426555886344038
 MonoBehaviour:
   m_ObjectHideFlags: 0

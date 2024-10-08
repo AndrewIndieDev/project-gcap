@@ -7,15 +7,20 @@ using UnityEngine;
 
 public class AIRangeSensor : MonoBehaviour
 {
-    private List<AIBase> nearbyEntities = new List<AIBase>();
-    public List<AIBase> NearbyEntities {  get { return nearbyEntities; } }
+    private List<AIBase> nearbyPrey = new List<AIBase>();
+    public List<AIBase> NearbyEntities {  get { return nearbyPrey; } }
+    private List<AIBase> nearbyPredator = new List<AIBase>();
+    public List<AIBase> NearbyPredator { get { return nearbyPredator; } }
 
     [SerializeField] float detectionRange = 3f;
 
     float commitmentTimer, commitmentTime = 5f;
 
-    public AIBase TargetEntity;
-    private AIBase storedTargetEntity;
+    public AIBase ClosestPrey;
+    private AIBase storedTargetPrey;
+
+    public AIBase ClosestPredator;
+    private AIBase storedTargetPredator;
 
     AIBase aiBase;
 
@@ -31,9 +36,12 @@ public class AIRangeSensor : MonoBehaviour
     // Update is called once per tick
     void OnTick(int tickIndex)
     {
-        nearbyEntities.Clear();
-        storedTargetEntity = TargetEntity;
-        TargetEntity = null;
+        nearbyPrey.Clear();
+        nearbyPredator.Clear();
+        storedTargetPrey = ClosestPrey;
+        storedTargetPredator = ClosestPredator;
+        ClosestPrey = null;
+        ClosestPredator = null;
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRange);
 
@@ -42,28 +50,51 @@ public class AIRangeSensor : MonoBehaviour
             if(collider.GetComponent<AIBase>() != null && collider.GetComponent<AIBase>() != GetComponent<AIBase>())
             {
                 AIBase ai = collider.GetComponent<AIBase>();
-                if (aiBase.animal.AnimalFaction.enemyFactions.Contains(ai.animal.AnimalFaction))
-                    nearbyEntities.Add(collider.GetComponent<AIBase>());
+                if (aiBase.animal.AnimalFaction.preyFactions.Contains(ai.animal.AnimalFaction))
+                    nearbyPrey.Add(collider.GetComponent<AIBase>());
+
+                if (aiBase.animal.AnimalFaction.predatorFactions.Contains(ai.animal.AnimalFaction))
+                    nearbyPredator.Add(collider.GetComponent<AIBase>());
             }
                 
         }
 
-        if(Utilities.Buffer(ref commitmentTime, commitmentTime))
+        if (Utilities.Buffer(ref commitmentTime, commitmentTime))
         {
-            float closestDistance = 99;
-            for(int i = 0; i < nearbyEntities.Count; i++)
+            float closestPreyDistance = 99;
+            for (int i = 0; i < nearbyPrey.Count; i++)
             {
-                float dist = Vector3.Distance(transform.position, nearbyEntities[i].transform.position);
-                if(dist < closestDistance)
+                float dist = Vector3.Distance(transform.position, nearbyPrey[i].transform.position);
+                if (dist < closestPreyDistance)
                 {
-                    closestDistance = dist;
-                    TargetEntity = nearbyEntities[i];
-                }  
+                    closestPreyDistance = dist;
+                    ClosestPrey = nearbyPrey[i];
+                }
             }
 
-            if(!TargetEntity)
-                storedTargetEntity = null;
-        } else if(storedTargetEntity != null)
-            TargetEntity = storedTargetEntity;
+            float closestPredatorDistance = 99;
+            for (int i = 0; i < nearbyPredator.Count; i++)
+            {
+                float dist = Vector3.Distance(transform.position, nearbyPredator[i].transform.position);
+                if (dist < closestPredatorDistance)
+                {
+                    closestPredatorDistance = dist;
+                    ClosestPredator = nearbyPredator[i];
+                }
+            }
+
+            if (!ClosestPrey)
+                storedTargetPrey = null;
+
+            if (!ClosestPredator)
+                storedTargetPredator = null;
+        }
+        else
+        {
+            if (storedTargetPrey != null)
+                ClosestPrey = storedTargetPrey;
+            if (storedTargetPredator != null)
+                ClosestPredator = storedTargetPredator;
+        }
     }
 }

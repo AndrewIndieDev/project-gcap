@@ -29,7 +29,7 @@ public class IdleState : BaseState
 
     public override void TickLogic()
     {
-        if (aiBase.CheckRangeSensor())
+        if (aiBase.CheckForPredators())
             stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
 
         if (Utilities.Buffer(ref idleTimer, idleTime))

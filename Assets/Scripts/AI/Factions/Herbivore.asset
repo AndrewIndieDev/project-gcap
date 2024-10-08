@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Herbivore
   m_EditorClassIdentifier: 
   factionName: Herbivore
-  enemyFactions:
+  preyFactions:
   - {fileID: 11400000, guid: 5faef4f0df5978441b533b30a2a532a2, type: 2}
+  predatorFactions:
+  - {fileID: 11400000, guid: 2f1fe7e2fda17aa4ba71253502ad10e3, type: 2}

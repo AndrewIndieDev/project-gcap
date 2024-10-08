@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Plant
   m_EditorClassIdentifier: 
   factionName: Plant
-  enemyFactions: []
+  preyFactions: []
+  predatorFactions: []

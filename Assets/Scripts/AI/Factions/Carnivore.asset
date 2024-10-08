@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Carnivore
   m_EditorClassIdentifier: 
   factionName: Carnivore
-  enemyFactions:
+  preyFactions:
   - {fileID: 11400000, guid: caf499e2db949134482a9af45ab87b8f, type: 2}
+  predatorFactions: []

@@ -33,14 +33,25 @@ public class AIBase : MonoBehaviour
         anim.SetBool("Reset", true);
     }
 
-    public bool CheckRangeSensor()
+    public bool CheckForPredators()
     {
         if (!rangeSensor)
             return false;
 
-        if(rangeSensor.TargetEntity != null)
+        if(rangeSensor.ClosestPredator != null)
             return true;
         
+        return false;
+    }
+
+    public bool CheckForPrey()
+    {
+        if (!rangeSensor)
+            return false;
+
+        if (rangeSensor.ClosestPrey != null)
+            return true;
+
         return false;
     }
 }

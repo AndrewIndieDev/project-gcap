@@ -9,10 +9,13 @@ public class AttackState : BaseState
 
     float attackTimer, attackTime = 1.3f;
 
-    public AttackState(AIBase ai, AIStateMachine stateMachine) : base(ai, stateMachine)
+    AIBase target;
+
+    public AttackState(AIBase ai, AIStateMachine stateMachine, AIBase target) : base(ai, stateMachine)
     {
         this.aiBase = ai;
         this.stateMachine = stateMachine;
+        this.target = target;
     }
 
     public override void Enter(BaseState previousState)
@@ -26,16 +29,15 @@ public class AttackState : BaseState
 
     public override void TickLogic()
     {
-        if(aiBase.CheckRangeSensor())
-            FaceTarget(aiBase.rangeSensor.TargetEntity.transform.position);
+        if(aiBase.CheckForPrey())
+            FaceTarget(aiBase.rangeSensor.ClosestPrey.transform.position);
         if (Utilities.Buffer(ref attackTimer, attackTime))
         {
-            if (Vector3.Distance(aiBase.rangeSensor.TargetEntity.transform.position, aiBase.transform.position) > 1.5f)
-                stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
-
-            if (aiBase.CheckRangeSensor())
+            target.health.Damage(aiBase.animal.attackDamage);
+            if (Vector3.Distance(aiBase.rangeSensor.ClosestPrey.transform.position, aiBase.transform.position) > 1.5f)
             {
-                aiBase.rangeSensor.TargetEntity.health.Damage(aiBase.animal.attackDamage);
+                stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
+                return;
             }
             return;
         }
