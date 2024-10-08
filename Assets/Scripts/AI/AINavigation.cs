@@ -28,6 +28,9 @@ public class AINavigation : MonoBehaviour
 
     public void ResetNavigation()
     {
+        if (!agent.enabled)
+            return;
+
         targetPosition = transform.position;
         agent.SetDestination(targetPosition);
     }

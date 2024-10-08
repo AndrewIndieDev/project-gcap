@@ -7,7 +7,7 @@ public class TickSystem : MonoBehaviour
     public static Tick onTick;
 
     public static ulong CurrentTick;
-    public static int TicksPerSecond = 60;
+    public static int TicksPerSecond = 10;
     public static float TickTime => 1f / TicksPerSecond;
     public static int UpdateAnimalsEveryXTicks = 4;
     public static int CurrentTickIndex;

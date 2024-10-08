@@ -8,6 +8,7 @@ public class AIBase : MonoBehaviour
     public Animator anim;
     public AIRangeSensor rangeSensor;
     public Health health;
+    public Energy energy;
 
     public void Start()
     {
@@ -25,10 +26,23 @@ public class AIBase : MonoBehaviour
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
         health = GetComponent<Health>();
+        health.Init(animal.Health);
+        energy = GetComponent<Energy>();
+        energy.Init(animal.Energy);
+
+        if (animal.AnimalFaction.factionName == "Plant")
+        {
+            Navigation.agent.enabled = false;
+            rangeSensor.enabled = false;
+            health.enabled = false;
+        }
     }
 
     public void ChangeAnimation(EAnimRef animation)
     {
+        if (anim == null)
+            return;
+
         anim.SetInteger("State", (int)animation);
         anim.SetBool("Reset", true);
     }

@@ -37,14 +37,13 @@ public class AttackState : BaseState
 
             if(target.health.CurrentHealth <= 0)
                 stateMachine.ChangeState(new EatState(aiBase, stateMachine));
-            if (Vector3.Distance(aiBase.rangeSensor.ClosestPrey.transform.position, aiBase.transform.position) > 1.5f)
+            if (Vector3.Distance(target.transform.position, aiBase.transform.position) > 1.5f)
             {
                 stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
                 return;
             }
             return;
         }
-
     }
 
     private void FaceTarget(Vector3 destination)

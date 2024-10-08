@@ -11,8 +11,8 @@ public class AnimalSO : ScriptableObject
     [Header("Shop Settings")]
     public ulong AnimalCost;
     [Header("Animal Stats")]
-    public double Health = 100;
-    public double Energy = 100;
+    public float Health = 100;
+    public float Energy = 100;
     [Space]
     public float attackDamage = 10f;
     public float Speed = 3.5f;
