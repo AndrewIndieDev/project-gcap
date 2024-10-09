@@ -8,7 +8,7 @@ public class IdleState : BaseState
     AIStateMachine stateMachine;
 
     float idleTimer, idleTime;
-    float minTime = 5f, maxTime = 10f;
+    float minTime = 2f, maxTime = 4f;
 
     public IdleState(AIBase ai, AIStateMachine stateMachine) : base(ai, stateMachine)
     {
