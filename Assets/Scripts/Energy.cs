@@ -9,13 +9,15 @@ public class Energy : MonoBehaviour, IEdible
     float energy = 1000;
     float maxEnergy = 1000;
 
-    public void Init(float max)
+    public void Init(float max, float current = 0)
     {
-        energy = max;
+        energy = current == 0 ? max : current;
         maxEnergy = max;
 
         EnableTick();
     }
+
+    public void SetCurrentEnergy(float amount) => energy = amount;
 
     public void EnableTick() => TickSystem.onTick += OnTick;
     public void DisableTick() => TickSystem.onTick -= OnTick;

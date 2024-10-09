@@ -25,16 +25,17 @@ public class AIBase : MonoBehaviour
         go.transform.localPosition = Vector3.zero;
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
-        health = GetComponent<Health>();
         health.Init(animal.Health);
-        energy = GetComponent<Energy>();
-        energy.Init(animal.Energy);
 
         if (animal.AnimalFaction.factionName == "Plant")
         {
             Navigation.agent.enabled = false;
             rangeSensor.enabled = false;
             health.enabled = false;
+        }
+        else
+        {
+            energy.Init(animal.Energy);
         }
     }
 
@@ -67,5 +68,16 @@ public class AIBase : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    public void Destroy()
+    {
+        Destroy(visualRoot);
+        Invoke(nameof(DelayedDestroy), 2f);
+    }
+
+    private void DelayedDestroy()
+    {
+        Destroy(gameObject);
     }
 }
