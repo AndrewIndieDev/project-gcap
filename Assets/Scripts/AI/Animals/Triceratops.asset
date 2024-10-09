@@ -16,7 +16,7 @@ MonoBehaviour:
   AnimalVisual: {fileID: 3852698128308450981, guid: 0783bb47bce0983489116dc925da134e,
     type: 3}
   AnimalDesc: 
-  AnimalIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  AnimalIcon: {fileID: 21300000, guid: ae6c1c654b1fbf849a1352676490c8cb, type: 3}
   AnimalFaction: {fileID: 11400000, guid: caf499e2db949134482a9af45ab87b8f, type: 2}
   AnimalCost: 1000
   Health: 6000
