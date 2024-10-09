@@ -29,9 +29,16 @@ public class IdleState : BaseState
 
     public override void TickLogic()
     {
+        if (aiBase.animal.AnimalFaction.factionName == "Plant")
+        {
+            stateMachine.ChangeState(new PlantState(aiBase, stateMachine));
+            return;
+        }
+
         if (aiBase.energy.CurrentEnergy <= 0)
         {
             stateMachine.ChangeState(new SleepState(aiBase, stateMachine));
+            return;
         }
 
         if (aiBase.CheckForPredators())

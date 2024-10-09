@@ -31,4 +31,15 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject animalPrefab;
+
+    private void Start()
+    {
+        GameObject go = null;
+        for (int i = 0; i < 5; i++)
+        {
+            go = Instantiate(animalPrefab);
+            go.transform.position = new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f));
+            go.transform.rotation = Quaternion.LookRotation(new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)).normalized);
+        }
+    }
 }

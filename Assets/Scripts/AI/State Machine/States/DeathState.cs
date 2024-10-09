@@ -15,7 +15,7 @@ public class DeathState : BaseState
 
     public override void Enter(BaseState previousState)
     {
-        aiBase.Navigation.ResetNavigation();
+        aiBase.Navigation?.ResetNavigation();
         aiBase.ChangeAnimation(EAnimRef.DEATH);
     }
 
@@ -25,6 +25,7 @@ public class DeathState : BaseState
 
     public override void TickLogic()
     {
-
+        if (aiBase.energy.CurrentEnergy <= 0)
+            aiBase.Destroy();
     }
 }
