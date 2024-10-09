@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,8 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Image buyIcon;
     public TMP_Text buyAmountVisual;
     public TMP_Text buyReferenceName;
+    public MMF_Player mouseEnterFeedbacks;
+    public MMF_Player mouseExitFeedbacks;
 
     private bool mouseOver;
     private int buyAmount = 1;
@@ -51,11 +54,13 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         mouseOver = true;
         buyReferenceName.text = buyReference.AnimalName;
+        mouseEnterFeedbacks.PlayFeedbacks();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
         buyReferenceName.text = "";
+        mouseExitFeedbacks.PlayFeedbacks();
     }
 }

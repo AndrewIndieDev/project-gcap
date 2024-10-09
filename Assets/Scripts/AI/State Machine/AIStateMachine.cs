@@ -21,7 +21,7 @@ public class AIStateMachine : MonoBehaviour
             if (aiBase.animal.AnimalFaction.factionName == "Plant")
                 ChangeState(new PlantState(aiBase, this));
             else
-                ChangeState(new WanderState(aiBase, this));
+                ChangeState(new IdleState(aiBase, this));
         }
 
         currentState.TickLogic();
@@ -29,7 +29,7 @@ public class AIStateMachine : MonoBehaviour
 
     void OnTick(int tickIndex)
     {
-        if (currentState != null /*&& tickIndex == this.tickIndex*/)
+        if (currentState != null && tickIndex == this.tickIndex)
         {
             currentState.TickLogic();
             CurrentState = currentState.ToString();

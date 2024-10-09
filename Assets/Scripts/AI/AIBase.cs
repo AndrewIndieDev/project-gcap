@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class AIBase : MonoBehaviour
@@ -9,6 +10,9 @@ public class AIBase : MonoBehaviour
     public AIRangeSensor rangeSensor;
     public Health health;
     public Energy energy;
+
+    [Header("Feedbacks")]
+    public MMF_Player spawnFeedbacks;
 
     public void Start()
     {
@@ -36,6 +40,7 @@ public class AIBase : MonoBehaviour
         else
         {
             energy.Init(animal.Energy);
+            spawnFeedbacks.PlayFeedbacks();
         }
     }
 
