@@ -63,7 +63,7 @@ public class AIBase : MonoBehaviour
         if (!rangeSensor)
             return false;
 
-        if (rangeSensor.ClosestPrey != null)
+        if (rangeSensor.ClosestPrey != null && energy.CurrentEnergy <= energy.MaxEnergy * .25f)
             return true;
 
         return false;
