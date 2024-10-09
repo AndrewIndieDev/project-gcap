@@ -61,6 +61,9 @@ public class AIStateMachine : MonoBehaviour
 
     public void OverrideStateToFlee()
     {
-        ChangeState(new FleeState(aiBase, this));
+        if (CurrentState == "SleepState")
+            (currentState as SleepState).getUpImmediately = true;
+        else
+            ChangeState(new FleeState(aiBase, this));
     }
 }

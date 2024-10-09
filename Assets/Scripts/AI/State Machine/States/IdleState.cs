@@ -8,7 +8,10 @@ public class IdleState : BaseState
     AIStateMachine stateMachine;
 
     float idleTimer, idleTime;
-    float minTime = 2f, maxTime = 4f;
+    float minTime = 5f, maxTime = 10f;
+
+    float spawnDelayTime, spawnDelayDuration = 2f;
+    bool isSpawning = true;
 
     public IdleState(AIBase ai, AIStateMachine stateMachine) : base(ai, stateMachine)
     {
@@ -19,7 +22,10 @@ public class IdleState : BaseState
     public override void Enter(BaseState previousState)
     {
         aiBase.ChangeAnimation(EAnimRef.IDLE);
-        idleTime = Random.Range(minTime, maxTime);
+        if (previousState != null)
+            idleTime = Random.Range(minTime, maxTime);
+        else
+            idleTime = 0.1f;
         aiBase.Navigation.ResetNavigation();
     }
 
@@ -29,6 +35,14 @@ public class IdleState : BaseState
 
     public override void TickLogic()
     {
+        if (Utilities.StateBuffer(ref spawnDelayTime, spawnDelayDuration))
+        {
+            isSpawning = false;
+        }
+
+        if (isSpawning)
+            return;
+
         if (aiBase.animal.AnimalFaction.factionName == "Plant")
         {
             stateMachine.ChangeState(new PlantState(aiBase, stateMachine));
@@ -53,7 +67,7 @@ public class IdleState : BaseState
             return;
         }
 
-        if (Utilities.Buffer(ref idleTimer, idleTime))
+        if (Utilities.StateBuffer(ref idleTimer, idleTime))
         {
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
             return;

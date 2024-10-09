@@ -25,6 +25,8 @@ public class DeathState : BaseState
 
     public override void TickLogic()
     {
+        aiBase.energy.Modify(-1);
+
         if (aiBase.energy.CurrentEnergy <= 0)
             aiBase.Destroy();
     }

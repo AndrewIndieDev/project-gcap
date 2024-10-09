@@ -45,14 +45,14 @@ public class WanderState : BaseState
         }
 
 
-        if (Utilities.Buffer(ref wanderTimer, wanderTime))
+        if (Utilities.StateBuffer(ref wanderTimer, wanderTime))
         {
             stateMachine.ChangeState(new IdleState(aiBase, stateMachine));
             return;
         }
             
         
-        if(Utilities.Buffer(ref wanderPointTimer, wanderPointTime))
+        if(Utilities.StateBuffer(ref wanderPointTimer, wanderPointTime))
         {
             FindWanderPoint();
         }

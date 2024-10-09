@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject animalPrefab;
+    public GameObject cameraRig;
 
     private void Start()
     {

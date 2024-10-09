@@ -22,10 +22,14 @@ public class PlantState : BaseState
     public override void TickLogic()
     {
         if (aiBase.energy.CurrentEnergy <= 0)
-            aiBase.Destroy();
+        {
+            stateMachine.ChangeState(new DeathState(aiBase, stateMachine));
+            return;
+        }
 
         float scale = aiBase.energy.CurrentEnergy / aiBase.energy.MaxEnergy;
-        aiBase.visualRoot.localScale = Vector3.one * scale;
+        if (aiBase.visualRoot != null)
+            aiBase.visualRoot.localScale = Vector3.one * scale;
 
         aiBase.energy.Modify(1);
 

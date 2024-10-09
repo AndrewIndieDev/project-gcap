@@ -29,10 +29,13 @@ public class EatState : BaseState
 
     public override void TickLogic()
     {
-        if (Utilities.Buffer(ref timer, duration))
+        if (Utilities.StateBuffer(ref timer, duration))
         {
-            aiBase.energy.Modify(100);
-            prey.energy.Modify(-100);
+            aiBase.energy.Modify(50);
+            prey.energy.Modify(-50);
+
+            if (prey.energy.CurrentEnergy <= 0)
+                prey = null;
         }
 
         if (prey == null || aiBase.energy.CurrentEnergy >= aiBase.energy.MaxEnergy * 0.8f)

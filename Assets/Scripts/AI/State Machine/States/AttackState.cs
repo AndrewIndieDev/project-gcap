@@ -31,7 +31,7 @@ public class AttackState : BaseState
     {
         if(aiBase.CheckForPrey())
             FaceTarget(aiBase.rangeSensor.ClosestPrey.transform.position);
-        if (Utilities.Buffer(ref attackTimer, attackTime))
+        if (Utilities.StateBuffer(ref attackTimer, attackTime))
         {
             target.health.Damage(aiBase.animal.attackDamage);
 

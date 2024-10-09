@@ -8,7 +8,8 @@ public class TickSystem : MonoBehaviour
 
     public static ulong CurrentTick;
     public static int TicksPerSecond = 10;
-    public static float TickTime => 1f / TicksPerSecond;
+    public static float TimeBetweenTicks => 1f / TicksPerSecond;
+    public static float TimeBetweenTicksForDinos => TimeBetweenTicks * UpdateAnimalsEveryXTicks;
     public static int UpdateAnimalsEveryXTicks = 4;
     public static int CurrentTickIndex;
 
@@ -26,10 +27,10 @@ public class TickSystem : MonoBehaviour
             CurrentTick++;
             onTick?.Invoke(currentTickIndex);
             currentTickIndex++;
-            CurrentTickIndex = currentTickIndex;
             if (currentTickIndex >= UpdateAnimalsEveryXTicks)
                 currentTickIndex = 0;
-            yield return new WaitForSeconds(TickTime);
+            CurrentTickIndex = currentTickIndex;
+            yield return new WaitForSeconds(TimeBetweenTicks);
         }
     }
 }

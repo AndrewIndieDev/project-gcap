@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AIRangeSensor : MonoBehaviour
@@ -65,7 +63,7 @@ public class AIRangeSensor : MonoBehaviour
             for (int i = 0; i < nearbyPrey.Count; i++)
             {
                 float dist = Vector3.Distance(transform.position, nearbyPrey[i].transform.position);
-                if (dist < closestPreyDistance)
+                if (dist < closestPreyDistance && nearbyPrey[i].energy.CurrentEnergy > 0)
                 {
                     closestPreyDistance = dist;
                     ClosestPrey = nearbyPrey[i];

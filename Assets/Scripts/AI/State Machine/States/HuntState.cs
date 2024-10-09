@@ -39,7 +39,7 @@ public class HuntState : BaseState
 
         if (aiBase.rangeSensor.ClosestPrey)
             aiBase.Navigation.UpdatePosition(aiBase.rangeSensor.ClosestPrey.transform.position);
-        else if (Utilities.Buffer(ref fledTimer, fledTime))
+        else if (Utilities.StateBuffer(ref fledTimer, fledTime))
         {
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
             return;

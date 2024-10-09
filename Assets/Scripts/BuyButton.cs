@@ -44,7 +44,7 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if (PointSystem.RemovePoints(buyReference.AnimalCost))
             {
-                GameObject go = Instantiate(GameManager.Instance.animalPrefab, new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)), Quaternion.identity);
+                GameObject go = Instantiate(GameManager.Instance.animalPrefab, GameManager.Instance.cameraRig.transform.position, Quaternion.identity);
                 go.GetComponent<AIBase>().animal = buyReference;
             }
         }

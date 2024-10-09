@@ -9,6 +9,8 @@ public class SleepState : BaseState
 
     float wakeTimer, wakeDuration = 2f;
 
+    public bool getUpImmediately;
+
     public SleepState(AIBase ai, AIStateMachine stateMachine) : base(ai, stateMachine)
     {
         this.aiBase = ai;
@@ -31,10 +33,10 @@ public class SleepState : BaseState
     {
         aiBase.energy.Modify(10);
 
-        if (aiBase.energy.CurrentEnergy >= aiBase.energy.MaxEnergy * 0.5f)
+        if (aiBase.energy.CurrentEnergy >= aiBase.energy.MaxEnergy * 0.5f || getUpImmediately)
         {
             aiBase.ChangeAnimation(EAnimRef.WAKE_UP);
-            if (Utilities.Buffer(ref wakeTimer, wakeDuration))
+            if (Utilities.StateBuffer(ref wakeTimer, wakeDuration))
             {
                 stateMachine.ChangeState(new IdleState(aiBase, stateMachine));
             }

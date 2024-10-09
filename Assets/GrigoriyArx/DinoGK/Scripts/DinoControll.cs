@@ -34,85 +34,83 @@ public class DinoControll : MonoBehaviour
         anim = GetComponent<Animator>();
         dinoMinMaxScale.x = this.transform.localScale.x * BabyScale;
         dinoMinMaxScale.y = this.transform.localScale.x;
-        
-
     }
 
-    void Update()
-    {
-        if (dinoState == 17) dinoState = 0;
-        if (dinoState < 0) dinoState = 16;
-        if (Input.GetKeyDown("d"))
-        {
-            if (dinoState < 18)
-            {
-                dinoState++;
-                if (dinoState == 13) dinoState++;
-                SwitchAnimation(dinoState);
-            }
-        }
-        if (Input.GetKeyDown("a"))
-        {
-            if (dinoState > 0)
-            {
-                dinoState--;
-                if (dinoState == 13) dinoState--;
-                SwitchAnimation(dinoState);
-            }
-        }
+    //void Update()
+    //{
+    //    if (dinoState == 17) dinoState = 0;
+    //    if (dinoState < 0) dinoState = 16;
+    //    if (Input.GetKeyDown("d"))
+    //    {
+    //        if (dinoState < 18)
+    //        {
+    //            dinoState++;
+    //            if (dinoState == 13) dinoState++;
+    //            SwitchAnimation(dinoState);
+    //        }
+    //    }
+    //    if (Input.GetKeyDown("a"))
+    //    {
+    //        if (dinoState > 0)
+    //        {
+    //            dinoState--;
+    //            if (dinoState == 13) dinoState--;
+    //            SwitchAnimation(dinoState);
+    //        }
+    //    }
 
-        if (Input.GetKeyDown("e"))
-        {
-            if (DinoAge < 10)
-            {
-                DinoAge++;
-                SetGrowth(DinoAge * 0.1f);
-            }
-        }
+    //    if (Input.GetKeyDown("e"))
+    //    {
+    //        if (DinoAge < 10)
+    //        {
+    //            DinoAge++;
+    //            SetGrowth(DinoAge * 0.1f);
+    //        }
+    //    }
 
-        if (Input.GetKeyDown("q"))
-        {
-            if (DinoAge > 0)
-            {
-                DinoAge--;
-                SetGrowth(DinoAge * 0.1f);
-            }
-        }
+    //    if (Input.GetKeyDown("q"))
+    //    {
+    //        if (DinoAge > 0)
+    //        {
+    //            DinoAge--;
+    //            SetGrowth(DinoAge * 0.1f);
+    //        }
+    //    }
 
-        if (Input.GetKeyDown("c"))
-        {
-            if (eyeShape >= 0)
-            {
-                eyeShape++;
-                if (eyeShape > _blendShapesCount-1) eyeShape = 0;
-                Debug.Log(eyeShape);
-                SwitchEyeShape(eyeShape);
-            }
-        }
+    //    if (Input.GetKeyDown("c"))
+    //    {
+    //        if (eyeShape >= 0)
+    //        {
+    //            eyeShape++;
+    //            if (eyeShape > _blendShapesCount-1) eyeShape = 0;
+    //            Debug.Log(eyeShape);
+    //            SwitchEyeShape(eyeShape);
+    //        }
+    //    }
 
-        if (Input.GetKeyDown("z"))
-        {
-            if (eyeShape <= _blendShapesCount)
-            {
-                eyeShape--;
-                if (eyeShape < 0) eyeShape = _blendShapesCount-1;
-                Debug.Log(eyeShape);
-                SwitchEyeShape(eyeShape);
-            }
-        }
+    //    if (Input.GetKeyDown("z"))
+    //    {
+    //        if (eyeShape <= _blendShapesCount)
+    //        {
+    //            eyeShape--;
+    //            if (eyeShape < 0) eyeShape = _blendShapesCount-1;
+    //            Debug.Log(eyeShape);
+    //            SwitchEyeShape(eyeShape);
+    //        }
+    //    }
 
-        if (Input.GetKeyDown("1"))
-        {
-            //dinoState = 98;
-            SwitchAnimation(98);
-        }
+    //    if (Input.GetKeyDown("1"))
+    //    {
+    //        //dinoState = 98;
+    //        SwitchAnimation(98);
+    //    }
 
-        if (Input.GetKeyDown("2"))
-        {
-            //dinoState = 99;
-            SwitchAnimation(99);
-        }
-    }
+    //    if (Input.GetKeyDown("2"))
+    //    {
+    //        //dinoState = 99;
+    //        SwitchAnimation(99);
+    //    }
+    //}
 
     private void FixedUpdate()
     {

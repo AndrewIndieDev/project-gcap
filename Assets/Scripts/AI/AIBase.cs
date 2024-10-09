@@ -14,6 +14,9 @@ public class AIBase : MonoBehaviour
     [Header("Feedbacks")]
     public MMF_Player spawnFeedbacks;
 
+
+    private bool isBeingDestroyed;
+
     public void Start()
     {
         InitializeAnimal();
@@ -77,7 +80,11 @@ public class AIBase : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(visualRoot);
+        if (isBeingDestroyed)
+            return;
+
+        isBeingDestroyed = true;
+        Destroy(visualRoot.gameObject);
         Invoke(nameof(DelayedDestroy), 2f);
     }
 

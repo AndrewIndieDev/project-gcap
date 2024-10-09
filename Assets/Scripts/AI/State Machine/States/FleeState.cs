@@ -40,7 +40,7 @@ public class FleeState : BaseState
             return;
         }
 
-        if(Utilities.Buffer(ref fleeTimer, fleeTime))
+        if(Utilities.StateBuffer(ref fleeTimer, fleeTime))
         {
             if(Vector3.Distance(aiBase.transform.position, predator.transform.position) > 20f)
             {
