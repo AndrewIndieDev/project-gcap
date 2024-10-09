@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class UIHealthAndEnergy : MonoBehaviour
 {
     [Header("Setup")]
-    [SerializeField] GameObject Canvas;
+    [SerializeField] public GameObject Canvas;
     [SerializeField] Health Health;
     [SerializeField] Energy Energy;
 
@@ -21,6 +21,7 @@ public class UIHealthAndEnergy : MonoBehaviour
         TickSystem.onTick += OnTick;
         Canvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
                          Camera.main.transform.rotation * Vector3.up);
+        Canvas.SetActive(false);
     }
 
     private void Update()
@@ -34,7 +35,8 @@ public class UIHealthAndEnergy : MonoBehaviour
         ManageEnergyBar();
         ManageHealthBar();
 
-        Canvas.SetActive(healthGO.activeSelf || energyGO.activeSelf);
+        //bool condition = healthGO.activeSelf || energyGO.activeSelf;
+        //Canvas.SetActive(condition);
     }
 
     void ManageHealthBar()
@@ -44,7 +46,7 @@ public class UIHealthAndEnergy : MonoBehaviour
 
         healthBar.fillAmount = Health.CurrentHealth / Health.MaxHealth;
 
-        healthGO.SetActive(Health.CurrentHealth < Health.MaxHealth);
+        //healthGO.SetActive(Health.CurrentHealth < Health.MaxHealth);
     }
 
     private void ManageEnergyBar()
@@ -53,6 +55,6 @@ public class UIHealthAndEnergy : MonoBehaviour
             return;
 
         energyBar.fillAmount = Energy.CurrentEnergy / Energy.MaxEnergy;
-        energyGO.SetActive(Energy.CurrentEnergy < (Energy.MaxEnergy));
+        //energyGO.SetActive(Energy.CurrentEnergy < (Energy.MaxEnergy));
     }
 }
