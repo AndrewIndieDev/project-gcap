@@ -60,22 +60,26 @@ public class CameraController : MonoBehaviour
 
         if (followTransform)
         {
-            transform.position = Vector3.Lerp(transform.position, followTransform.position, Time.deltaTime * fastMovementSpeed);
+            transform.position = Vector3.Lerp(transform.position, followTransform.position, Time.deltaTime * fastMovementSpeed * 2f);
         } else
         {
             HandleMovementInput();
             HandleMouseInput();
         }
 
+        bool cancelInput = Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)
+            || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D);
+
         if (Input.mouseScrollDelta.y != 0)
         {
             zoomProgress -= Input.mouseScrollDelta.y * zoomSpeed * 2f;
-        } else if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2) || Input.anyKeyDown)
+        } else if (cancelInput)
             followTransform = null;
 
 
 
         HandleZoom();
+        HandleRotation();
     }
 
     public void SetFollowTransform(Transform transform)
@@ -111,21 +115,7 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(2))
-        {
-            rotateStartPosition = Input.mousePosition;
-            rotateStartPosition.z = 0f;
-        }
-
-        if (Input.GetMouseButton(2))
-        {
-            rotateCurrentPosition = Input.mousePosition;
-            rotateCurrentPosition.z = 0f;
-            Vector3 difference = rotateStartPosition - rotateCurrentPosition;
-            rotateStartPosition = rotateCurrentPosition;
-
-            newRotation *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
-        }
+        
     }
 
     void HandleMovementInput()
@@ -151,11 +141,7 @@ public class CameraController : MonoBehaviour
             newPosition += (transform.right * -movementSpeed);
         }
 
-        if (Input.GetKey(KeyCode.Q))
-            newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
-
-        if (Input.GetKey(KeyCode.E))
-            newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
+        
 
         if (Input.GetKey(KeyCode.R))
             zoomProgress -= zoomSpeed;
@@ -164,7 +150,6 @@ public class CameraController : MonoBehaviour
             zoomProgress += zoomSpeed;
 
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
     }
 
     void HandleZoom()
@@ -178,5 +163,31 @@ public class CameraController : MonoBehaviour
         zoomXRotation = Mathf.Lerp(zoomRotationClose, zoomRotationFar, zoomProgress);
         zoomRotation = Quaternion.Euler(new Vector3(zoomXRotation, cameraTransform.localRotation.y, cameraTransform.localRotation.z));
         cameraTransform.localRotation = Quaternion.Lerp(cameraTransform.localRotation, zoomRotation, Time.deltaTime * movementTime);
+    }
+
+    void HandleRotation()
+    {
+        if (Input.GetKey(KeyCode.Q))
+            newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
+
+        if (Input.GetKey(KeyCode.E))
+            newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            rotateStartPosition = Input.mousePosition;
+            rotateStartPosition.z = 0f;
+        }
+
+        if (Input.GetMouseButton(2))
+        {
+            rotateCurrentPosition = Input.mousePosition;
+            rotateCurrentPosition.z = 0f;
+            Vector3 difference = rotateStartPosition - rotateCurrentPosition;
+            rotateStartPosition = rotateCurrentPosition;
+
+            newRotation *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
+        }
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
     }
 }
