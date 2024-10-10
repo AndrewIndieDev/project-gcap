@@ -74,7 +74,18 @@ public class CameraController : MonoBehaviour
         {
             zoomProgress -= Input.mouseScrollDelta.y * zoomSpeed * 2f;
         } else if (cancelInput)
+        {
             followTransform = null;
+            newPosition = transform.position;
+            Plane plane = new Plane(Vector3.up, Vector3.zero);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            float entry;
+
+            if (plane.Raycast(ray, out entry))
+                dragStartPosition = ray.GetPoint(entry);
+        }
+            
 
 
 
