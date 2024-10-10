@@ -31,7 +31,7 @@ public class PlantState : BaseState
         if (aiBase.visualRoot != null)
             aiBase.visualRoot.localScale = Vector3.one * scale;
 
-        aiBase.energy.Modify(1);
+        aiBase.energy.Modify(3);
 
         if (aiBase.energy.CurrentEnergy == aiBase.energy.MaxEnergy)
         {

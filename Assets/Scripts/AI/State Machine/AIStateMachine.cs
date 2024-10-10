@@ -27,6 +27,11 @@ public class AIStateMachine : MonoBehaviour
         currentState.TickLogic();
     }
 
+    private void OnDestroy()
+    {
+        TickSystem.onTick -= OnTick;
+    }
+
     void OnTick(int tickIndex)
     {
         if (currentState != null && tickIndex == this.tickIndex)

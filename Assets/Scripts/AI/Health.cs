@@ -30,11 +30,12 @@ public class Health : MonoBehaviour, IDamagable
         
     }
 
-    public void Damage(float amount) {
+    public void Damage(float amount, bool forceWakeUp = true) {
         if (health <= 0)
             return;
 
-        pTakeDamage.Invoke();
+        if (forceWakeUp)
+            pTakeDamage.Invoke();
         health = Mathf.Clamp(health - amount, 0, maxHealth);
 
         if (health <= 0) {

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class SleepState : BaseState
 {
     AIBase aiBase;
@@ -32,6 +28,8 @@ public class SleepState : BaseState
     public override void TickLogic()
     {
         aiBase.energy.Modify(10);
+        float damage = 10f;
+        aiBase.health.Damage(damage, false);
 
         if (aiBase.energy.CurrentEnergy >= aiBase.energy.MaxEnergy * 0.5f || getUpImmediately)
         {

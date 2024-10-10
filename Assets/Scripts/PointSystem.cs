@@ -3,7 +3,7 @@ using UnityEngine;
 public class PointSystem : MonoBehaviour
 {
     public static ulong Points => points;
-    private static ulong points = 18000;
+    private static ulong points = 0;
     public static bool AddPoints(ulong amount)
     {
         if (points + amount <= ulong.MaxValue)

@@ -31,6 +31,11 @@ public class AIRangeSensor : MonoBehaviour
         aiBase = GetComponent<AIBase>();
     }
 
+    private void OnDestroy()
+    {
+        TickSystem.onTick -= OnTick;
+    }
+
     // Update is called once per tick
     void OnTick(int tickIndex)
     {

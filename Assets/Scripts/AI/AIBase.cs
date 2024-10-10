@@ -39,6 +39,8 @@ public class AIBase : MonoBehaviour
             Navigation.agent.enabled = false;
             rangeSensor.enabled = false;
             health.enabled = false;
+            float randomScale = Random.Range(.8f, 1.2f);
+            visualRoot.transform.GetChild(0).localScale = Vector3.one * randomScale;
         }
         else
         {

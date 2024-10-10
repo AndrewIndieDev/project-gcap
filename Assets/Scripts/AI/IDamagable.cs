@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IDamagable
 {
     float Health { get; set; }
-    void Damage(float amount);
+    void Damage(float amount, bool forceWakeUp = true);
 }
