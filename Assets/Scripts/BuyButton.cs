@@ -53,7 +53,7 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
-        buyReferenceName.text = buyReference.AnimalName;
+        buyReferenceName.text = $"{buyReference.AnimalName} ({buyReference.AnimalCost})";
         mouseEnterFeedbacks.PlayFeedbacks();
     }
 

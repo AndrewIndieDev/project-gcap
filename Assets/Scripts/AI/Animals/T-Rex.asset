@@ -18,7 +18,7 @@ MonoBehaviour:
   AnimalDesc: 
   AnimalIcon: {fileID: 21300000, guid: a069aa87d2e42ea4f9502d011ab3a70e, type: 3}
   AnimalFaction: {fileID: 11400000, guid: 2f1fe7e2fda17aa4ba71253502ad10e3, type: 2}
-  AnimalCost: 5000
+  AnimalCost: 8000
   Health: 8000
   Energy: 8000
   attackDamage: 1000

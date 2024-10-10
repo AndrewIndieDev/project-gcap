@@ -6,7 +6,7 @@ public class StatBarEnabler : MonoBehaviour
 {
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if(other.GetComponent<UIHealthAndEnergy>() != null)
         {
             other.GetComponent<UIHealthAndEnergy>().Canvas.SetActive(true);

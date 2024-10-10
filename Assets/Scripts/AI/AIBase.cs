@@ -33,7 +33,7 @@ public class AIBase : MonoBehaviour
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
         health.Init(animal.Health);
-        energy.Init(animal.Energy);
+        
 
         float randomScale;
         if (animal.AnimalFaction.factionName == "Plant")
@@ -42,11 +42,17 @@ public class AIBase : MonoBehaviour
             rangeSensor.enabled = false;
             health.enabled = false;
             randomScale = Random.Range(.8f, 1.2f);
+            
+            if (TickSystem.CurrentTick >= 2)
+                energy.Init(animal.Energy, 100f);
+            else
+                energy.Init(animal.Energy);
         }
         else
         {
             spawnFeedbacks.PlayFeedbacks();
             randomScale = Random.Range(.9f, 1.1f);
+            energy.Init(animal.Energy);
         }
         visualRoot.transform.GetChild(0).localScale = Vector3.one * randomScale;
     }

@@ -13,6 +13,7 @@ public class PlantState : BaseState
 
     public override void Enter(BaseState previousState)
     {
+        aiBase.energy.DisableTick();
     }
 
     public override void Exit()
@@ -31,9 +32,9 @@ public class PlantState : BaseState
         if (aiBase.visualRoot != null)
             aiBase.visualRoot.localScale = Vector3.one * scale;
 
-        aiBase.energy.Modify(2);
+        aiBase.energy.Modify(3);
 
-        if (aiBase.energy.CurrentEnergy == aiBase.energy.MaxEnergy)
+        if (aiBase.energy.CurrentEnergy >= aiBase.energy.MaxEnergy * 0.9f)
         {
             float chance = Random.Range(0f, 1f);
             if (chance <= 0.01f)
@@ -58,7 +59,6 @@ public class PlantState : BaseState
                     GameObject go = GameManager.Instantiate(GameManager.Instance.animalPrefab);
                     go.transform.position = GetRandomPositionAroundTarget(aiBase.transform.position, 5f);
                     go.transform.rotation = Quaternion.LookRotation(new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)).normalized);
-                    go.GetComponent<AIBase>().energy.SetCurrentEnergy(1);
                 }
             }
         }
