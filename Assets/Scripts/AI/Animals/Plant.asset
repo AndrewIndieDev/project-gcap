@@ -19,7 +19,7 @@ MonoBehaviour:
   AnimalFaction: {fileID: 11400000, guid: 5faef4f0df5978441b533b30a2a532a2, type: 2}
   AnimalCost: 1000
   Health: 1
-  Energy: 100000
+  Energy: 1000000
   attackDamage: 0
   Speed: 0
   ScorePerTick: 0

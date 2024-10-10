@@ -38,7 +38,7 @@ public class EatState : BaseState
                 prey = null;
         }
 
-        if (prey == null || aiBase.energy.CurrentEnergy >= aiBase.energy.MaxEnergy * 0.8f)
+        if (prey == null || aiBase.energy.CurrentEnergy >= aiBase.energy.MaxEnergy)
             stateMachine.ChangeState(new IdleState(aiBase, stateMachine));
     }
 }

@@ -33,9 +33,12 @@ public class HuntState : BaseState
             stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
             return;
         }
-        
+
         if (!aiBase.CheckForPrey())
+        {
+            stateMachine.ChangeState(new IdleState(aiBase, stateMachine));
             return;
+        }
 
         if (aiBase.rangeSensor.ClosestPrey)
             aiBase.Navigation.UpdatePosition(aiBase.rangeSensor.ClosestPrey.transform.position);

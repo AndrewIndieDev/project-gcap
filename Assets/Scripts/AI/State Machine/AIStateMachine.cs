@@ -48,7 +48,7 @@ public class AIStateMachine : MonoBehaviour
 
     public void ChangeState(BaseState newState)
     {
-        Debug.Log($"[AI] Changing state from {(currentState != null ? currentState : "<null>")} to {(newState != null ? newState : "<null>")}.");
+        //Debug.Log($"[AI] Changing state from {(currentState != null ? currentState : "<null>")} to {(newState != null ? newState : "<null>")}.");
 
         if (currentState != null)
             currentState.Exit();

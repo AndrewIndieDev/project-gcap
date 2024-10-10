@@ -33,20 +33,22 @@ public class AIBase : MonoBehaviour
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
         health.Init(animal.Health);
-
+        
+        float randomScale;
         if (animal.AnimalFaction.factionName == "Plant")
         {
             Navigation.agent.enabled = false;
             rangeSensor.enabled = false;
             health.enabled = false;
-            float randomScale = Random.Range(.8f, 1.2f);
-            visualRoot.transform.GetChild(0).localScale = Vector3.one * randomScale;
+            randomScale = Random.Range(.8f, 1.2f);
         }
         else
         {
             energy.Init(animal.Energy);
             spawnFeedbacks.PlayFeedbacks();
+            randomScale = Random.Range(.9f, 1.1f);
         }
+        visualRoot.transform.GetChild(0).localScale = Vector3.one * randomScale;
     }
 
     public void ChangeAnimation(EAnimRef animation)
@@ -74,7 +76,7 @@ public class AIBase : MonoBehaviour
         if (!rangeSensor)
             return false;
 
-        if (rangeSensor.ClosestPrey != null && energy.CurrentEnergy <= energy.MaxEnergy * .25f)
+        if (rangeSensor.ClosestPrey != null && energy.CurrentEnergy <= energy.MaxEnergy * .6f)
             return true;
 
         return false;
