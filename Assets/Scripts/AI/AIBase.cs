@@ -33,7 +33,8 @@ public class AIBase : MonoBehaviour
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
         health.Init(animal.Health);
-        
+        energy.Init(animal.Energy);
+
         float randomScale;
         if (animal.AnimalFaction.factionName == "Plant")
         {
@@ -44,7 +45,6 @@ public class AIBase : MonoBehaviour
         }
         else
         {
-            energy.Init(animal.Energy);
             spawnFeedbacks.PlayFeedbacks();
             randomScale = Random.Range(.9f, 1.1f);
         }
