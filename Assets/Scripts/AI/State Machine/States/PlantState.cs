@@ -54,20 +54,17 @@ public class PlantState : BaseState
                     }
                 }
 
-                if (nearbyPlants < 10)
+                if (nearbyPlants < 4)
                 {
+                    Vector3 position = Vector3.zero;
+                    while (position == Vector3.zero)
+                        position = GameManager.Instance.GetRandomPositionAroundTarget(aiBase.transform.position, 5f);
+
                     GameObject go = GameManager.Instantiate(GameManager.Instance.animalPrefab);
-                    go.transform.position = GetRandomPositionAroundTarget(aiBase.transform.position, 5f);
+                    go.transform.position = GameManager.Instance.GetRandomPositionAroundTarget(aiBase.transform.position, 5f);
                     go.transform.rotation = Quaternion.LookRotation(new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)).normalized);
                 }
             }
         }
-    }
-
-    Vector3 GetRandomPositionAroundTarget(Vector3 targetPosition, float radius)
-    {
-        Vector2 randomCircle = Random.insideUnitCircle * radius; // Get a random point in a circle
-        Vector3 randomPosition = new Vector3(randomCircle.x, 0, randomCircle.y) + targetPosition; // Adjust for 3D space
-        return randomPosition;
     }
 }
