@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class AIRangeSensor : MonoBehaviour
 {
@@ -53,9 +54,16 @@ public class AIRangeSensor : MonoBehaviour
             if(collider.GetComponent<AIBase>() != null && collider.GetComponent<AIBase>() != GetComponent<AIBase>())
             {
                 AIBase ai = collider.GetComponent<AIBase>();
-                if (aiBase.animal.AnimalFaction.preyFactions.Contains(ai.animal.AnimalFaction))
-                    nearbyPrey.Add(collider.GetComponent<AIBase>());
-
+                //// Eat god damn anything to survive
+                if (aiBase.animal.favouriteFood.Length <= 0 || aiBase.energy.CurrentEnergy <= aiBase.energy.MaxEnergy * .3f)
+                {
+                    if (aiBase.animal.AnimalFaction.preyFactions.Contains(ai.animal.AnimalFaction))
+                        nearbyPrey.Add(collider.GetComponent<AIBase>());
+                } else //Otherwise eat favourite food
+                {
+                    if (aiBase.animal.favouriteFood.Contains(ai.animal))
+                        nearbyPrey.Add(collider.GetComponent<AIBase>());        
+                }
                 if (aiBase.animal.AnimalFaction.predatorFactions.Contains(ai.animal.AnimalFaction))
                     nearbyPredator.Add(collider.GetComponent<AIBase>());
             }

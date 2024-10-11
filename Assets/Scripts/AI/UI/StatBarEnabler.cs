@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class StatBarEnabler : MonoBehaviour
 {
+    public float statSizeScale = 10f;
+
+    public void Start()
+    {
+        transform.localScale = Vector3.one * statSizeScale;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.name);
         if(other.GetComponent<UIHealthAndEnergy>() != null)
         {
-            other.GetComponent<UIHealthAndEnergy>().Canvas.SetActive(true);
+            if(other.GetComponent<UIHealthAndEnergy>().Canvas != null)
+                other.GetComponent<UIHealthAndEnergy>().Canvas.SetActive(true);
         }
     }
 
@@ -17,7 +25,8 @@ public class StatBarEnabler : MonoBehaviour
     {
         if (other.GetComponent<UIHealthAndEnergy>() != null)
         {
-            other.GetComponent<UIHealthAndEnergy>().Canvas.SetActive(false);
+            if (other.GetComponent<UIHealthAndEnergy>().Canvas != null)
+                other.GetComponent<UIHealthAndEnergy>().Canvas.SetActive(false);
         }
     }
 }

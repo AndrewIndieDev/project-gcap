@@ -24,3 +24,5 @@ MonoBehaviour:
   attackDamage: 1000
   Speed: 1.15
   ScorePerTick: 2
+  favouriteFood:
+  - {fileID: 11400000, guid: 568c4fdf3eabbdb4189e263e875d0fc9, type: 2}

@@ -18,4 +18,6 @@ public class AnimalSO : ScriptableObject
     public float Speed = 3.5f;
     [Space]
     public ulong ScorePerTick = 1;
+    [Space]
+    public AnimalSO[] favouriteFood;
 }
