@@ -55,6 +55,11 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         mouseOver = true;
         buyReferenceName.text = $"{buyReference.AnimalName} ({buyReference.AnimalCost})";
         mouseEnterFeedbacks.PlayFeedbacks();
+
+        if (!CameraController.instance)
+            return;
+
+        CameraController.instance.enableMouseScrollInput = false;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -62,5 +67,10 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         mouseOver = false;
         buyReferenceName.text = "";
         mouseExitFeedbacks.PlayFeedbacks();
+
+        if (!CameraController.instance)
+            return;
+
+        CameraController.instance.enableMouseScrollInput = true;
     }
 }

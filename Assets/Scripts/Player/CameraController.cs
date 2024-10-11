@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
     Quaternion newRotation;
 
     [Header("Zoom")]
+    public bool enableMouseScrollInput = true;
     [SerializeField] float zoomSpeed = 1f;
     [SerializeField] float minZoom = 1f, maxZoom = 50f;
     [SerializeField] AnimationCurve zoomYAxis;
@@ -70,7 +71,7 @@ public class CameraController : MonoBehaviour
         bool cancelInput = Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)
             || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D);
 
-        if (Input.mouseScrollDelta.y != 0)
+        if (enableMouseScrollInput && Input.mouseScrollDelta.y != 0)
         {
             zoomProgress -= Input.mouseScrollDelta.y * zoomSpeed * 2f;
         } else if (cancelInput)
