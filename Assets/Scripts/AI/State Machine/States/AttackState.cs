@@ -10,12 +10,14 @@ public class AttackState : BaseState
     float attackTimer, attackTime = 1.3f;
 
     AIBase target;
+    bool isSelfDefence;
 
-    public AttackState(AIBase ai, AIStateMachine stateMachine, AIBase target) : base(ai, stateMachine)
+    public AttackState(AIBase ai, AIStateMachine stateMachine, AIBase target, bool isSelfDefence) : base(ai, stateMachine)
     {
         this.aiBase = ai;
         this.stateMachine = stateMachine;
         this.target = target;
+        this.isSelfDefence = isSelfDefence;
     }
 
     public override void Enter(BaseState previousState)
@@ -29,20 +31,42 @@ public class AttackState : BaseState
 
     public override void TickLogic()
     {
-        if(aiBase.CheckForPrey())
-            FaceTarget(aiBase.rangeSensor.ClosestPrey.transform.position);
-        if (Utilities.StateBuffer(ref attackTimer, attackTime))
+        if (!target)
+            return;
+        if (isSelfDefence)
         {
-            target.health.Damage(aiBase.animal.attackDamage);
-
-            if(target.health.CurrentHealth <= 0)
-                stateMachine.ChangeState(new EatState(aiBase, stateMachine));
-            if (Vector3.Distance(target.transform.position, aiBase.transform.position) > 1.5f)
+            if (aiBase.CheckForPrey())
+                FaceTarget(target.transform.position);
+            if (Utilities.StateBuffer(ref attackTimer, attackTime))
             {
-                stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
+                target.health.Damage(aiBase.animal.attackDamage);
+
+                if (target.health.CurrentHealth <= 0)
+                    stateMachine.ChangeState(new EatState(aiBase, stateMachine));
+                if (Vector3.Distance(target.transform.position, aiBase.transform.position) > 1.5f)
+                {
+                    stateMachine.ChangeState(new HuntState(aiBase, stateMachine, false));
+                    return;
+                }
                 return;
             }
-            return;
+        } else
+        {
+            if (aiBase.CheckForPredators())
+                FaceTarget(target.transform.position);
+            if (Utilities.StateBuffer(ref attackTimer, attackTime))
+            {
+                target.health.Damage(aiBase.animal.attackDamage);
+
+                if (target.health.CurrentHealth <= 0)
+                    stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
+                if (Vector3.Distance(target.transform.position, aiBase.transform.position) > 1.5f)
+                {
+                    stateMachine.ChangeState(new HuntState(aiBase, stateMachine, true));
+                    return;
+                }
+                return;
+            }
         }
     }
 

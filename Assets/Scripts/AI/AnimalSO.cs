@@ -16,6 +16,8 @@ public class AnimalSO : ScriptableObject
     [Space]
     public float attackDamage = 10f;
     public float Speed = 3.5f;
+    public float runSpeed = 4.5f;
+    public bool isDefensiveOnHit = false;
     [Space]
     public ulong ScorePerTick = 1;
     [Space]

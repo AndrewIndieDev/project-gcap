@@ -2397,7 +2397,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2644531488983877557}
         m_TargetAssemblyTypeName: AIStateMachine, Assembly-CSharp
-        m_MethodName: OverrideStateToFlee
+        m_MethodName: OverrideOnHit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

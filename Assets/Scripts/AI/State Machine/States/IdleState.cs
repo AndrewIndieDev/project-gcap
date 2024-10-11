@@ -63,7 +63,7 @@ public class IdleState : BaseState
 
         if (aiBase.CheckForPrey())
         {
-            stateMachine.ChangeState(new HuntState(aiBase, stateMachine));
+            stateMachine.ChangeState(new HuntState(aiBase, stateMachine, false));
             return;
         }
 

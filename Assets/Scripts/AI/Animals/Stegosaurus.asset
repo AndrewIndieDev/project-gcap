@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734f45cf869a7bd4aafb8eb6d541d1f2, type: 3}
+  m_Name: Stegosaurus
+  m_EditorClassIdentifier: 
+  AnimalName: Stegosaurus
+  AnimalVisual: {fileID: 7139957973501579332, guid: bf9eafde2bdd0c944a64e69961e6a856,
+    type: 3}
+  AnimalDesc: 
+  AnimalIcon: {fileID: 21300000, guid: 9b71bfd1aea70324ab731027dea7c4fd, type: 3}
+  AnimalFaction: {fileID: 11400000, guid: caf499e2db949134482a9af45ab87b8f, type: 2}
+  AnimalCost: 10000
+  Health: 8000
+  Energy: 8000
+  attackDamage: 10
+  Speed: 1.15
+  ScorePerTick: 5
+  favouriteFood:
+  - {fileID: 11400000, guid: 568c4fdf3eabbdb4189e263e875d0fc9, type: 2}

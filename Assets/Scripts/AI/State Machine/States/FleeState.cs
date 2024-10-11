@@ -19,17 +19,19 @@ public class FleeState : BaseState
     public override void Enter(BaseState previousState)
     {
         aiBase.ChangeAnimation(EAnimRef.RUN);
-        aiBase.Navigation.agent.speed *= 1.5f;
+        aiBase.Navigation.agent.speed = aiBase.animal.runSpeed;
 
         if (aiBase.CheckForPredators())
             predator = aiBase.rangeSensor.ClosestPredator;
+        else if (aiBase.animal.isDefensiveOnHit && aiBase.CheckForPrey())
+            predator = aiBase.rangeSensor.ClosestPrey;
         else
             stateMachine.ChangeState(new WanderState(aiBase, stateMachine));
     }
 
     public override void Exit()
     {
-        aiBase.Navigation.agent.speed /= 1.5f;
+        aiBase.Navigation.agent.speed = aiBase.animal.Speed;
     }
 
     public override void TickLogic()

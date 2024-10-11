@@ -23,4 +23,8 @@ MonoBehaviour:
   Energy: 10000
   attackDamage: 10
   Speed: 2
+  runSpeed: 4.5
+  isDefensiveOnHit: 1
   ScorePerTick: 10
+  favouriteFood:
+  - {fileID: 11400000, guid: 568c4fdf3eabbdb4189e263e875d0fc9, type: 2}

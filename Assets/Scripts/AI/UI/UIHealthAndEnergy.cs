@@ -22,11 +22,15 @@ public class UIHealthAndEnergy : MonoBehaviour
         Canvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
                          Camera.main.transform.rotation * Vector3.up);
         Canvas.SetActive(false);
+
+        if(GetComponent<AIBase>().animal.AnimalFaction.factionName == "Plant")
+            Canvas = null;
     }
 
     private void Update()
     {
-        Canvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
+        if(Canvas)
+            Canvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
                          Camera.main.transform.rotation * Vector3.up);
     }
 
