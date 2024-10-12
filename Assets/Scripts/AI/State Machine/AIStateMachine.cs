@@ -83,6 +83,5 @@ public class AIStateMachine : MonoBehaviour
             else
                 ChangeState(new FleeState(aiBase, this));
         }
-            
     }
 }

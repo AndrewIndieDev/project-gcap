@@ -33,7 +33,7 @@ public class AttackState : BaseState
     {
         if (!target)
             return;
-        if (isSelfDefence)
+        if (!isSelfDefence)
         {
             if (aiBase.CheckForPrey())
                 FaceTarget(target.transform.position);
