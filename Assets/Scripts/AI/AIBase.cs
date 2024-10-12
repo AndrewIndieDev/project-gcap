@@ -1,5 +1,6 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AIBase : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class AIBase : MonoBehaviour
     public AIRangeSensor rangeSensor;
     public Health health;
     public Energy energy;
+    public ulong ticksTillMate;
+    public AIBase isMatingWith;
+    public ulong lifeTick;
 
     [Header("Feedbacks")]
     public MMF_Player spawnFeedbacks;
 
-
+    private DinoControll dinoScript;
     private bool isBeingDestroyed;
 
     public void Start()
@@ -27,22 +31,22 @@ public class AIBase : MonoBehaviour
         if (!animal)
             return;
 
+        ticksTillMate = animal.ticksTillMate;
         Navigation.agent.speed = animal.Speed;
         GameObject go = Instantiate(animal.AnimalVisual, visualRoot);
         go.transform.localPosition = Vector3.zero;
         go.transform.localRotation = Quaternion.identity;
         anim = go.GetComponent<Animator>();
         health.Init(animal.Health);
-        
 
-        float randomScale;
         if (animal.AnimalFaction.factionName == "Plant")
         {
             Navigation.agent.enabled = false;
             rangeSensor.enabled = false;
             health.enabled = false;
-            randomScale = Random.Range(.8f, 1.2f);
-            
+            float randomScale = Random.Range(.8f, 1.2f);
+            visualRoot.transform.GetChild(0).localScale = Vector3.one * randomScale;
+
             if (TickSystem.CurrentTick >= 2)
                 energy.Init(animal.Energy, 100f);
             else
@@ -51,10 +55,40 @@ public class AIBase : MonoBehaviour
         else
         {
             spawnFeedbacks.PlayFeedbacks();
-            randomScale = Random.Range(.9f, 1.1f);
             energy.Init(animal.Energy);
+            TickSystem.onTick += OnTick;
+            dinoScript = visualRoot.GetChild(0).GetComponent<DinoControll>();
         }
-        visualRoot.transform.GetChild(0).localScale = Vector3.one * randomScale;
+        
+    }
+
+    private void OnDestroy()
+    {
+        if (animal.AnimalFaction.factionName != "Plant")
+            TickSystem.onTick -= OnTick;
+    }
+
+    private void OnTick(int tickIndex)
+    {
+        if (ticksTillMate > 0)
+            ticksTillMate--;
+
+        lifeTick++;
+
+        if (lifeTick >= animal.ticksTillDeath)
+            health.Damage(2f, false);
+
+        float growth = Mathf.Clamp01(lifeTick / (animal.ticksTillDeath * 0.3f));
+        if (growth <= 1)
+        {
+            dinoScript.DinoAge = growth * 10;
+            dinoScript.SetGrowth(growth);
+        }
+    }
+
+    public void SetAge(float percent)
+    {
+        lifeTick = (ulong)(percent * animal.ticksTillDeath);
     }
 
     public void ChangeAnimation(EAnimRef animation)
@@ -88,6 +122,27 @@ public class AIBase : MonoBehaviour
         return false;
     }
 
+    public bool CheckForMate()
+    {
+        if (!rangeSensor)
+            return false;
+
+        // Find a mate, and if both are above 50% energy, then mate
+        if (rangeSensor.ClosestMate != null && ticksTillMate <= 0 && rangeSensor.ClosestMate.ticksTillMate <= 0)
+        {
+            if (isMatingWith == null && rangeSensor.ClosestMate.isMatingWith == null)
+            {
+                return true;
+            }
+            else if (isMatingWith == null && rangeSensor.ClosestMate.isMatingWith == this)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void Destroy()
     {
         if (isBeingDestroyed)
@@ -101,5 +156,14 @@ public class AIBase : MonoBehaviour
     private void DelayedDestroy()
     {
         Destroy(gameObject);
+    }
+
+    public void SpawnBaby()
+    {
+        GameObject go = Instantiate(GameManager.Instance.animalPrefab);
+        go.transform.position = transform.position;
+        go.transform.rotation = transform.rotation;
+        go.GetComponent<AIBase>().animal = animal;
+        //go.GetComponent<AIBase>().dinoScript.;
     }
 }

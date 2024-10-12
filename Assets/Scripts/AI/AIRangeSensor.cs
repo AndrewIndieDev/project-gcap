@@ -7,9 +7,11 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class AIRangeSensor : MonoBehaviour
 {
     private List<AIBase> nearbyPrey = new List<AIBase>();
-    public List<AIBase> NearbyEntities {  get { return nearbyPrey; } }
+    public List<AIBase> NearbyPrey {  get { return nearbyPrey; } }
     private List<AIBase> nearbyPredator = new List<AIBase>();
     public List<AIBase> NearbyPredator { get { return nearbyPredator; } }
+    private List<AIBase> nearbyMates = new List<AIBase>();
+    public List<AIBase> NearbyMates { get { return nearbyMates; } }
 
     [SerializeField] float detectionRange = 3f;
 
@@ -20,6 +22,9 @@ public class AIRangeSensor : MonoBehaviour
 
     public AIBase ClosestPredator;
     private AIBase storedTargetPredator;
+
+    public AIBase ClosestMate;
+    private AIBase storedTargetMate;
 
     AIBase aiBase;
 
@@ -46,26 +51,38 @@ public class AIRangeSensor : MonoBehaviour
         storedTargetPredator = ClosestPredator;
         ClosestPrey = null;
         ClosestPredator = null;
+        ClosestMate = null;
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRange);
 
+        AIBase ai = null;
         foreach (Collider collider in hitColliders)
         {
-            if(collider.GetComponent<AIBase>() != null && collider.GetComponent<AIBase>() != GetComponent<AIBase>())
+            ai = collider.GetComponent<AIBase>();
+            if (ai != null && ai != aiBase)
             {
-                AIBase ai = collider.GetComponent<AIBase>();
+                // Find animals of the same species nearby
+                if (ai.animal.AnimalName == aiBase.animal.AnimalName)
+                {
+                    Vector3 dist = transform.position - ai.transform.position;
+                    if (storedTargetMate == null || Vector3.Distance(transform.position, storedTargetMate.transform.position) > Vector3.Distance(transform.position, ai.transform.position))
+                    {
+                        ClosestMate = ai;
+                    }
+                }
+
                 //// Eat god damn anything to survive
                 if (aiBase.animal.favouriteFood.Length <= 0 || aiBase.energy.CurrentEnergy <= aiBase.energy.MaxEnergy * .3f)
                 {
                     if (aiBase.animal.AnimalFaction.preyFactions.Contains(ai.animal.AnimalFaction))
-                        nearbyPrey.Add(collider.GetComponent<AIBase>());
+                        nearbyPrey.Add(ai);
                 } else //Otherwise eat favourite food
                 {
                     if (aiBase.animal.favouriteFood.Contains(ai.animal))
-                        nearbyPrey.Add(collider.GetComponent<AIBase>());        
+                        nearbyPrey.Add(ai);        
                 }
                 if (aiBase.animal.AnimalFaction.predatorFactions.Contains(ai.animal.AnimalFaction))
-                    nearbyPredator.Add(collider.GetComponent<AIBase>());
+                    nearbyPredator.Add(ai);
             }
                 
         }
@@ -94,11 +111,25 @@ public class AIRangeSensor : MonoBehaviour
                 }
             }
 
+            float closestMateDistance = 99;
+            for (int i = 0; i < nearbyMates.Count; i++)
+            {
+                float dist = Vector3.Distance(transform.position, nearbyMates[i].transform.position);
+                if (dist < closestMateDistance)
+                {
+                    closestMateDistance = dist;
+                    ClosestMate = nearbyMates[i];
+                }
+            }
+
             if (!ClosestPrey)
                 storedTargetPrey = null;
 
             if (!ClosestPredator)
                 storedTargetPredator = null;
+
+            if (!ClosestMate)
+                storedTargetMate = null;
         }
         else
         {
@@ -106,6 +137,8 @@ public class AIRangeSensor : MonoBehaviour
                 ClosestPrey = storedTargetPrey;
             if (storedTargetPredator != null)
                 ClosestPredator = storedTargetPredator;
+            if (storedTargetMate != null)
+                ClosestMate = storedTargetMate;
         }
     }
 }

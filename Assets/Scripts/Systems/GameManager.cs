@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
             go.transform.position = position;
             go.transform.rotation = Quaternion.LookRotation(new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)).normalized);
             go.GetComponent<AIBase>().animal = settings.startingAnimals[i];
+            go.GetComponent<AIBase>().SetAge(0.3f);
 
             position = Vector3.zero;
         }

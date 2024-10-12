@@ -44,6 +44,12 @@ public class WanderState : BaseState
             return;
         }
 
+        if (aiBase.CheckForMate())
+        {
+            stateMachine.ChangeState(new MateState(aiBase, stateMachine));
+            return;
+        }
+
 
         if (Utilities.StateBuffer(ref wanderTimer, wanderTime))
         {

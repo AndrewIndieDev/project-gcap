@@ -6,7 +6,7 @@ public class DinoControll : MonoBehaviour
 {
 
     Animator anim;
-    [Header("Age (0..10)")] [SerializeField] float DinoAge = 10;
+    [Header("Age (0..10)")] public float DinoAge = 10;
     [SerializeField] private float BabyScale = 0.5f;
     [SerializeField] private SkinnedMeshRenderer dinoRenderer;
     [SerializeField] private SkinnedMeshRenderer eyeLeft, eyeRight;
@@ -123,7 +123,7 @@ public class DinoControll : MonoBehaviour
         }
     }
 
-    void SetGrowth(float t)
+    public void SetGrowth(float t)
     {
         dinoTransform.localScale = Vector3.one * Mathf.Lerp(dinoMinMaxScale.x, dinoMinMaxScale.y, t);
 
