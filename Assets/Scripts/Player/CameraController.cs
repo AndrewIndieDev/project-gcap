@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float rotationAmount = .25f;
     
     Vector3 newPosition;
-    Quaternion newRotation;
+    public Quaternion newRotation;
 
     [Header("Zoom")]
     public bool enableMouseScrollInput = true;
