@@ -184,7 +184,8 @@ namespace MoreMountains.Feedbacks
 			{
 				Turn(false);    
 			}
-			Owner.StopCoroutine(_coroutine);
+			if (Owner != null && _coroutine != null)
+				Owner.StopCoroutine(_coroutine);
 			_coroutine = null;
 		}
 

@@ -8,6 +8,9 @@ public class MousePositionToWorldSpace : MonoBehaviour
     
     void Update()
     {
+        if (!GameManager.IsRunning)
+            return;
+
         Vector3 screenPosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(screenPosition);
 

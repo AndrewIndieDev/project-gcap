@@ -36,6 +36,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] Vector3 rotateCurrentPosition;
 
     bool skipFrame = false;
+    static bool controllable = false;
+    public static void SetControllable(bool value) => controllable = value;
     
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,11 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!controllable)
+            return;
+        else
+            cameraTransform.gameObject.SetActive(true);
+
         if(skipFrame)
         {
             skipFrame = false;
