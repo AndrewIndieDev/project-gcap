@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cc62419dbe4274e8ea0914b1265060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DinoAge: 10
+  DinoAge: 0
   BabyScale: 0.5
   dinoRenderer: {fileID: 6026458218098578145}
   eyeLeft: {fileID: 2669727368937801780}

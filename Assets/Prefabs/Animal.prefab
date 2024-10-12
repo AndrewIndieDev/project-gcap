@@ -2315,6 +2315,9 @@ MonoBehaviour:
   rangeSensor: {fileID: 5554849355568602316}
   health: {fileID: 2931426555886344038}
   energy: {fileID: -4162959980008470031}
+  ticksTillMate: 0
+  isMatingWith: {fileID: 0}
+  lifeTick: 1
   spawnFeedbacks: {fileID: 8578989101813165129}
 --- !u!114 &5509739832610871590
 MonoBehaviour:
@@ -2379,6 +2382,7 @@ MonoBehaviour:
   detectionRange: 10
   ClosestPrey: {fileID: 0}
   ClosestPredator: {fileID: 0}
+  ClosestMate: {fileID: 0}
 --- !u!114 &2931426555886344038
 MonoBehaviour:
   m_ObjectHideFlags: 0

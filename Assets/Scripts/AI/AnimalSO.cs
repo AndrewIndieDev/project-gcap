@@ -15,6 +15,7 @@ public class AnimalSO : ScriptableObject
     public float Energy = 100;
     [Space]
     public float attackDamage = 10f;
+    public float babySpeed = 3.5f;
     public float Speed = 3.5f;
     public float runSpeed = 4.5f;
     public bool isDefensiveOnHit = false;

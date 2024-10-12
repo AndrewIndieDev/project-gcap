@@ -22,9 +22,12 @@ MonoBehaviour:
   Health: 8000
   Energy: 8000
   attackDamage: 10
+  babySpeed: 0.5
   Speed: 1
   runSpeed: 4.5
   isDefensiveOnHit: 0
+  ticksTillMate: 1000
+  ticksTillDeath: 100000
   ScorePerTick: 5
   favouriteFood:
   - {fileID: 11400000, guid: 568c4fdf3eabbdb4189e263e875d0fc9, type: 2}

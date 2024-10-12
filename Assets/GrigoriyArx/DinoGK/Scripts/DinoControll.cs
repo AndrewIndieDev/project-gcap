@@ -34,6 +34,9 @@ public class DinoControll : MonoBehaviour
         anim = GetComponent<Animator>();
         dinoMinMaxScale.x = this.transform.localScale.x * BabyScale;
         dinoMinMaxScale.y = this.transform.localScale.x;
+        
+        if (GameManager.IsRunning)
+            SetGrowth(DinoAge * 0.1f);
     }
 
     //void Update()

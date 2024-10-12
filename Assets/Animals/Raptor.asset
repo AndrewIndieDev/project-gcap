@@ -21,10 +21,13 @@ MonoBehaviour:
   AnimalCost: 3000
   Health: 1000
   Energy: 3000
-  attackDamage: 10
+  attackDamage: 100
+  babySpeed: 0.5
   Speed: 1.2
   runSpeed: 4.5
   isDefensiveOnHit: 0
+  ticksTillMate: 1000
+  ticksTillDeath: 100000
   ScorePerTick: 1
   favouriteFood:
   - {fileID: 11400000, guid: 5d0cce3950d7de24cad90544c99deae5, type: 2}

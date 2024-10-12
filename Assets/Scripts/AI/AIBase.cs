@@ -13,7 +13,8 @@ public class AIBase : MonoBehaviour
     public Energy energy;
     public ulong ticksTillMate;
     public AIBase isMatingWith;
-    public ulong lifeTick;
+    public ulong lifeTick = 1;
+    public bool IsAdult => dinoScript.DinoAge >= 10;
 
     [Header("Feedbacks")]
     public MMF_Player spawnFeedbacks;
@@ -39,6 +40,7 @@ public class AIBase : MonoBehaviour
         anim = go.GetComponent<Animator>();
         health.Init(animal.Health);
 
+        // Is a Plant
         if (animal.AnimalFaction.factionName == "Plant")
         {
             Navigation.agent.enabled = false;
@@ -52,6 +54,7 @@ public class AIBase : MonoBehaviour
             else
                 energy.Init(animal.Energy);
         }
+        // Is a Dino
         else
         {
             spawnFeedbacks.PlayFeedbacks();
@@ -70,6 +73,9 @@ public class AIBase : MonoBehaviour
 
     private void OnTick(int tickIndex)
     {
+        if (health.CurrentHealth <= 0 || spawnFeedbacks.IsPlaying)
+            return;
+
         if (ticksTillMate > 0)
             ticksTillMate--;
 
@@ -84,6 +90,8 @@ public class AIBase : MonoBehaviour
             dinoScript.DinoAge = growth * 10;
             dinoScript.SetGrowth(growth);
         }
+
+        Navigation.agent.speed = growth.Remap(0, 1, animal.babySpeed, animal.Speed);
     }
 
     public void SetAge(float percent)
@@ -124,17 +132,18 @@ public class AIBase : MonoBehaviour
 
     public bool CheckForMate()
     {
-        if (!rangeSensor)
+        if (!rangeSensor || !IsAdult)
             return false;
 
         // Find a mate, and if both are above 50% energy, then mate
-        if (rangeSensor.ClosestMate != null && ticksTillMate <= 0 && rangeSensor.ClosestMate.ticksTillMate <= 0)
+        AIBase potentialMate = rangeSensor.ClosestMate;
+        if (potentialMate != null && potentialMate.IsAdult && ticksTillMate <= 0 && potentialMate.ticksTillMate <= 0)
         {
-            if (isMatingWith == null && rangeSensor.ClosestMate.isMatingWith == null)
+            if (isMatingWith == null && potentialMate.isMatingWith == null)
             {
                 return true;
             }
-            else if (isMatingWith == null && rangeSensor.ClosestMate.isMatingWith == this)
+            else if (isMatingWith == null && potentialMate.isMatingWith == this)
             {
                 return true;
             }
