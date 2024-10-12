@@ -147,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 61867314377443892}
   - component: {fileID: 1403466847686968425}
+  - component: {fileID: 6116368128387636695}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -188,6 +189,7 @@ MonoBehaviour:
   fastMovementSpeed: 1
   movementTime: 5
   rotationAmount: 0.4
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
   enableMouseScrollInput: 1
   zoomSpeed: 0.5
   minZoom: 20
@@ -250,3 +252,15 @@ MonoBehaviour:
   dragCurrentPosition: {x: 0, y: 0, z: 0}
   rotateStartPosition: {x: 0, y: 0, z: 0}
   rotateCurrentPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &6116368128387636695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3553435414780213016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cca7f6fae87d2e47b03a819961c0475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
