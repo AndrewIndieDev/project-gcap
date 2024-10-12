@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public StartingSO settings;
+    public SettingsSO settings;
     public GameObject animalPrefab;
     public GameObject cameraRig;
 

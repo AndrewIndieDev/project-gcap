@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new StartingSO", menuName = "StartingSO")]
-public class StartingSO : ScriptableObject
+public class SettingsSO : ScriptableObject
 {
     [Header("Starting Stats")]
     public ulong startingPoints;

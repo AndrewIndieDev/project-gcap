@@ -18,11 +18,13 @@ MonoBehaviour:
   AnimalDesc: 
   AnimalIcon: {fileID: 21300000, guid: 9b71bfd1aea70324ab731027dea7c4fd, type: 3}
   AnimalFaction: {fileID: 11400000, guid: caf499e2db949134482a9af45ab87b8f, type: 2}
-  AnimalCost: 10000
+  AnimalCost: 8000
   Health: 8000
   Energy: 8000
   attackDamage: 10
-  Speed: 1.15
+  Speed: 1
+  runSpeed: 4.5
+  isDefensiveOnHit: 0
   ScorePerTick: 5
   favouriteFood:
   - {fileID: 11400000, guid: 568c4fdf3eabbdb4189e263e875d0fc9, type: 2}

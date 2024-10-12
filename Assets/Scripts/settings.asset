@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f6824a947742b4e8d45d5f64417fd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 75bfa3c5c53d7144198c7bf5a59daf3f, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
   startingPoints: 5000000
