@@ -28,11 +28,29 @@ public static class Utilities
         return false;
     }
 
+    /// <summary>
+    /// Remaps a value from one range to another.
+    /// </summary>
+    /// <param name="s">The variable to be remapped.</param>
+    /// <param name="a1">The minimum value of the original range.</param>
+    /// <param name="a2">The maximum value of the original range.</param>
+    /// <param name="b1">The minimum value of the new range.</param>
+    /// <param name="b2">The maximum value of the new range.</param>
+    /// <returns>The remapped value.</returns>
     public static float Remap(this float s, float a1, float a2, float b1, float b2)
     {
         return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
 
+    /// <summary>
+    /// Remaps a value from one range to another, clamped between the new range.
+    /// </summary>
+    /// <param name="s">The variable to be remapped.</param>
+    /// <param name="a1">The minimum value of the original range.</param>
+    /// <param name="a2">The maximum value of the original range.</param>
+    /// <param name="b1">The minimum value of the new range.</param>
+    /// <param name="b2">The maximum value of the new range.</param>
+    /// <returns>The remapped value.</returns>
     public static float RemapClamped(this float s, float a1, float a2, float b1, float b2)
     {
         return Mathf.Clamp(Remap(s, a1, a2, b1, b2), b1, b2);
