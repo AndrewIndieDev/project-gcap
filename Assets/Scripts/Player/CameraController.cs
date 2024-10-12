@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public static CameraController instance;
+    public static CameraController Instance;
     
     public Transform cameraTransform;
     public Transform followTransform;
@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        Instance = this;
         newPosition = transform.position;
         newRotation = transform.rotation;
 

@@ -6,6 +6,6 @@ public class FollowCollider : MonoBehaviour
 {
     public void OnMouseDown()
     {
-        CameraController.instance.SetFollowTransform(transform);
+        CameraController.Instance.SetFollowTransform(transform);
     }
 }

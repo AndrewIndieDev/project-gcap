@@ -44,7 +44,7 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if (PointSystem.RemovePoints(buyReference.AnimalCost))
             {
-                GameObject go = Instantiate(GameManager.Instance.animalPrefab, GameManager.Instance.cameraRig.transform.position, Quaternion.identity);
+                GameObject go = Instantiate(GameManager.Instance.animalPrefab, CameraController.Instance.transform.position, Quaternion.identity);
                 go.GetComponent<AIBase>().animal = buyReference;
             }
         }
@@ -56,10 +56,10 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         buyReferenceName.text = $"{buyReference.AnimalName} ({buyReference.AnimalCost.ToString("N0")})";
         mouseEnterFeedbacks.PlayFeedbacks();
 
-        if (!CameraController.instance)
+        if (!CameraController.Instance)
             return;
 
-        CameraController.instance.enableMouseScrollInput = false;
+        CameraController.Instance.enableMouseScrollInput = false;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -68,9 +68,9 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         buyReferenceName.text = "";
         mouseExitFeedbacks.PlayFeedbacks();
 
-        if (!CameraController.instance)
+        if (!CameraController.Instance)
             return;
 
-        CameraController.instance.enableMouseScrollInput = true;
+        CameraController.Instance.enableMouseScrollInput = true;
     }
 }

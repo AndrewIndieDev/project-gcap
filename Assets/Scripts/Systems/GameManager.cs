@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public SettingsSO settings;
     public GameObject animalPrefab;
-    public GameObject cameraRig;
+    public GameObject gameCanvas;
     public GameObject[] toDeleteOnPlay;
 
     [Header("temp UI")]
@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
 
         CameraController.SetControllable(true);
         TickSystem.startTicking = true;
+        gameCanvas.SetActive(true);
 
         for (int i = 0; i < toDeleteOnPlay.Length; i++)
         {
