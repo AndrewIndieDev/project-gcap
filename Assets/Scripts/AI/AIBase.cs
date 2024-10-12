@@ -173,6 +173,5 @@ public class AIBase : MonoBehaviour
         go.transform.position = transform.position;
         go.transform.rotation = transform.rotation;
         go.GetComponent<AIBase>().animal = animal;
-        //go.GetComponent<AIBase>().dinoScript.;
     }
 }

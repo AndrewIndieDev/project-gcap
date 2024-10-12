@@ -21,7 +21,7 @@ MonoBehaviour:
   AnimalCost: 10000
   Health: 10000
   Energy: 10000
-  attackDamage: 10
+  attackDamage: 100
   babySpeed: 0.7
   Speed: 2
   runSpeed: 4.5

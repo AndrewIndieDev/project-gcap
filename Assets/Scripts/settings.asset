@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: settings
   m_EditorClassIdentifier: 
   startingPoints: 5000000
-  startingTrees: 10
+  startingTrees: 30
   startingAnimals:
   - {fileID: 11400000, guid: 5d0cce3950d7de24cad90544c99deae5, type: 2}
   - {fileID: 11400000, guid: 5d0cce3950d7de24cad90544c99deae5, type: 2}

@@ -33,6 +33,12 @@ public class MateState : BaseState
             return;
         }
 
+        if (aiBase.rangeSensor.ClosestMate == null)
+        {
+            stateMachine.ChangeState(new IdleState(aiBase, stateMachine));
+            return;
+        }
+
         if (aiBase.Navigation.agent.remainingDistance > 0.5f)
             aiBase.Navigation.agent.SetDestination(aiBase.isMatingWith.transform.position);
         else
