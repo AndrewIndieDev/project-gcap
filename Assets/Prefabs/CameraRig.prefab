@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 61867314377443892}
   - component: {fileID: 1403466847686968425}
   - component: {fileID: 6116368128387636695}
+  - component: {fileID: 4197464751187119471}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -189,6 +190,7 @@ MonoBehaviour:
   fastMovementSpeed: 1
   movementTime: 5
   rotationAmount: 0.4
+  newPosition: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
   enableMouseScrollInput: 1
   zoomSpeed: 0.5
@@ -264,3 +266,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cca7f6fae87d2e47b03a819961c0475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4197464751187119471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3553435414780213016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08baa3d19a3754108af85534c7824251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableMultiTouch: 1
+  TreatMousePointerAsFinger: 1
+  TreatMouseWheelAsFingers: 1
+  SimulateMouseWithTouches: 0
+  ProcessUnityTouches: 1
+  RequireControlKeyForMouseZoom: 1
+  MouseDistanceInUnitsForScaleAndRotate: 1
+  MouseWheelDeltaMultiplier: 0.01
+  MouseWheelZoomOutSnapBack: {x: 0, y: 0}
+  PassThroughObjects: []
+  AutoAddRequiredComponents: 1
+  ShowTouches: 0
+  TouchCircles: []
+  DefaultDPI: 200
+  LevelUnloadOption: 2
+  UseFixedUpdate: 0
+  RecordTouches: 0
+  TestTouches: []

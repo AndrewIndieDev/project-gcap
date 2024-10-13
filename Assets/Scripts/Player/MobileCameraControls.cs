@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DigitalRubyShared;
+using UnityEngine.Scripting;
 
 [RequireComponent(typeof(CameraController))]
 public class MobileCameraControls : MonoBehaviour
@@ -9,20 +10,63 @@ public class MobileCameraControls : MonoBehaviour
     private PanGestureRecognizer panGesture;
     private RotateGestureRecognizer rotateGesture;
     private ScaleGestureRecognizer scaleGesture;
+    private TapGestureRecognizer tapGesture;
+
+    public GameObject debugSphere;
 
     // Start is called before the first frame update
     void Start()
     {
+        /*
         if (SystemInfo.deviceType != DeviceType.Handheld)
             return;
-        
+        */
         HandleRotateGesture();
         HandleScaleGesture();
         HandlePanGesture();
+        HandleTapGesture();
 
         panGesture.AllowSimultaneousExecution(scaleGesture);
         panGesture.AllowSimultaneousExecution(rotateGesture);
         scaleGesture.AllowSimultaneousExecution(rotateGesture);
+    }
+
+    private void TapGestureCallback(DigitalRubyShared.GestureRecognizer gesture)
+    {
+        if (gesture.State == GestureRecognizerState.Ended)
+        {
+            Plane plane = new Plane(Vector3.up, Vector3.zero);
+            Ray ray = Camera.main.ScreenPointToRay(new Vector2(gesture.FocusX, gesture.FocusY));
+
+            float entry;
+
+
+            Vector3 origin = Vector3.zero;
+            if (plane.Raycast(ray, out entry))
+                origin = ray.GetPoint(entry);
+
+            Collider[] hits = Physics.OverlapSphere(origin + Vector3.up, 10f);
+            //GameObject go = Instantiate(debugSphere);
+            //go.transform.localScale = Vector3.one * 5f;
+            //go.transform.position = origin;
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].GetComponent<FollowCollider>() != null)
+                {
+                    hits[i].GetComponent<FollowCollider>().FollowTransform();
+                }
+            }
+
+            
+        }
+    }
+
+    private void HandleTapGesture()
+    {
+        tapGesture = new TapGestureRecognizer();
+        tapGesture.StateUpdated += TapGestureCallback;
+        FingersScript.Instance.AddGesture(tapGesture);
     }
 
     private void ScaleGestureCallback(DigitalRubyShared.GestureRecognizer gesture)
@@ -46,6 +90,7 @@ public class MobileCameraControls : MonoBehaviour
     {
         if (gesture.State == GestureRecognizerState.Executing)
         {
+            CameraController.Instance.followTransform = null;
             // Calculate the movement deltas based on the pan gesture
             float deltaX = panGesture.DeltaX / 25.0f;
             float deltaY = panGesture.DeltaY / 25.0f;
