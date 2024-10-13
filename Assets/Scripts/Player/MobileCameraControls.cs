@@ -16,11 +16,7 @@ public class MobileCameraControls : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        
-        if (SystemInfo.deviceType != DeviceType.Handheld)
-            return;
-        
+    {   
         HandleRotateGesture();
         HandleScaleGesture();
         HandlePanGesture();
