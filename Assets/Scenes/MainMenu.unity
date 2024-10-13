@@ -7069,17 +7069,17 @@ PrefabInstance:
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188613].ColorOverTime.key0.b
-      value: 0.3254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188613].ColorOverTime.key0.g
-      value: 0.7019608
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188613].ColorOverTime.key0.r
-      value: 0.9254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
@@ -10134,17 +10134,17 @@ PrefabInstance:
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188614].ColorOverTime.key1.b
-      value: 0.3254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188614].ColorOverTime.key1.g
-      value: 0.7019608
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188614].ColorOverTime.key1.r
-      value: 0.9254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
@@ -18953,17 +18953,17 @@ PrefabInstance:
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188613].ColorOverTime.key0.b
-      value: 0.3254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188613].ColorOverTime.key0.g
-      value: 0.7019608
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188613].ColorOverTime.key0.r
-      value: 0.9254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032179630807491605, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
@@ -22018,17 +22018,17 @@ PrefabInstance:
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188614].ColorOverTime.key1.b
-      value: 0.3254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188614].ColorOverTime.key1.g
-      value: 0.7019608
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
       propertyPath: managedReferences[3819919174869188614].ColorOverTime.key1.r
-      value: 0.9254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5666673623914162859, guid: 10dbd09d5dd88dc439926b7afa303177,
         type: 3}
