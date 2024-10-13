@@ -1,6 +1,8 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public enum EAnimRef
 {
@@ -40,9 +42,17 @@ public class GameManager : MonoBehaviour
     public delegate void OnGameStart();
     public OnGameStart onGameStart;
 
-    public void ChangeSpeed(int speed)
+    async void Start()
     {
-        Time.timeScale = speed;
+        if (SceneManager.GetActiveScene().name == "_bootstrap")
+        {
+            SceneLoader.Instance.LoadScene("MainMenu");
+            SceneLoader.Instance.LoadScene("Main");
+
+            await Task.Delay(20000);
+
+            SceneLoader.Instance.UnloadScene("_bootstrap");
+        }
     }
 
     public Vector3 GetRandomPositionAroundTarget(Vector3 targetPosition, float radius)

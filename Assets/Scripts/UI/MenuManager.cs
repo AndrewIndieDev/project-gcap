@@ -1,9 +1,10 @@
+using MoreMountains.Feedbacks;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    public Camera menuCamera;
+    public MMF_Player menuFeedbacks;
 
     public void Quit()
     {
@@ -14,9 +15,12 @@ public class MenuManager : MonoBehaviour
 #endif
     }
 
-    public void Play()
+    public async void Play()
     {
+        menuFeedbacks.PlayFeedbacks();
+
+        await Task.Delay(600);
+
         GameManager.Instance.StartGame();
-        menuCamera.gameObject.SetActive(false);
     }
 }
