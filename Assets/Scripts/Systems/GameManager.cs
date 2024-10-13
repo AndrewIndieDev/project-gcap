@@ -27,28 +27,22 @@ public enum EAnimRef
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    public AudioSource m_MusicAudioSource;
-    public AudioSource m_SFXAudioSource;
-    public AudioClip SFXAudioClip;
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     public static bool IsRunning { get; set; }
 
     public SettingsSO settings;
     public GameObject animalPrefab;
-    public GameObject gameCanvas;
-    public GameObject[] toDeleteOnPlay;
-
-    [Header("temp UI")]
-    public TMP_Text timeScaleText;
+    
+    public delegate void OnGameStart();
+    public OnGameStart onGameStart;
 
     public void ChangeSpeed(int speed)
     {
         Time.timeScale = speed;
-        timeScaleText.text = "x" + speed.ToString();
     }
 
     public Vector3 GetRandomPositionAroundTarget(Vector3 targetPosition, float radius)
@@ -103,19 +97,7 @@ public class GameManager : MonoBehaviour
 
         CameraController.SetControllable(true);
         TickSystem.startTicking = true;
-        gameCanvas.SetActive(true);
-
-        if(m_MusicAudioSource)
-            m_MusicAudioSource.Play();
-
-        if (m_SFXAudioSource)
-            m_SFXAudioSource.PlayOneShot(SFXAudioClip);
-
-        for (int i = 0; i < toDeleteOnPlay.Length; i++)
-        {
-            Destroy(toDeleteOnPlay[i]);
-        }
-
         IsRunning = true;
+        onGameStart?.Invoke();
     }
 }
