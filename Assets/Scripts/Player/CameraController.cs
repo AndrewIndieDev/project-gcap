@@ -168,6 +168,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.F))
             zoomProgress += zoomSpeed;
 
+        newPosition = Vector3.ClampMagnitude(newPosition, 100f);
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
     }
 

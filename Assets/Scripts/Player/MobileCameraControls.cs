@@ -13,6 +13,9 @@ public class MobileCameraControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SystemInfo.deviceType != DeviceType.Handheld)
+            return;
+        
         HandleRotateGesture();
         HandleScaleGesture();
         HandlePanGesture();
@@ -88,12 +91,5 @@ public class MobileCameraControls : MonoBehaviour
         rotateGesture = new RotateGestureRecognizer();
         rotateGesture.StateUpdated += RotateGestureCallback;
         FingersScript.Instance.AddGesture(rotateGesture);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
