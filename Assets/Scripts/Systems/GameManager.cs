@@ -27,6 +27,10 @@ public enum EAnimRef
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    public AudioSource m_MusicAudioSource;
+    public AudioSource m_SFXAudioSource;
+    public AudioClip SFXAudioClip;
     private void Awake()
     {
         Instance = this;
@@ -100,6 +104,12 @@ public class GameManager : MonoBehaviour
         CameraController.SetControllable(true);
         TickSystem.startTicking = true;
         gameCanvas.SetActive(true);
+
+        if(m_MusicAudioSource)
+            m_MusicAudioSource.Play();
+
+        if (m_SFXAudioSource)
+            m_SFXAudioSource.PlayOneShot(SFXAudioClip);
 
         for (int i = 0; i < toDeleteOnPlay.Length; i++)
         {
