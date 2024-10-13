@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734f45cf869a7bd4aafb8eb6d541d1f2, type: 3}
+  m_Name: Spinosaurus
+  m_EditorClassIdentifier: 
+  AnimalName: Spinosaurus
+  AnimalVisual: {fileID: 5135238285288377050, guid: a8ec39084e763c7469a2e4d334ad7ca9,
+    type: 3}
+  AnimalDesc: 
+  AnimalIcon: {fileID: 21300000, guid: 92c3dc53d2e82084e94851a51b57363b, type: 3}
+  AnimalFaction: {fileID: 11400000, guid: 2f1fe7e2fda17aa4ba71253502ad10e3, type: 2}
+  AnimalCost: 8000
+  UnlockCost: 800000
+  Health: 8000
+  Energy: 8000
+  attackDamage: 1000
+  babySpeed: 0.7
+  Speed: 2.2
+  runSpeed: 4.5
+  isDefensiveOnHit: 1
+  ticksTillMate: 1000
+  ticksTillDeath: 100000
+  ScorePerTick: 5
+  favouriteFood:
+  - {fileID: 11400000, guid: c4fe8f9d2c3dce64a8e61ed540233785, type: 2}
+  - {fileID: 11400000, guid: 3d04161d02551f24b91887c7418b3a2f, type: 2}

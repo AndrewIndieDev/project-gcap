@@ -19,6 +19,7 @@ MonoBehaviour:
   AnimalIcon: {fileID: 21300000, guid: 07791e1c5977a5b4680063cb5a6e7946, type: 3}
   AnimalFaction: {fileID: 11400000, guid: caf499e2db949134482a9af45ab87b8f, type: 2}
   AnimalCost: 10000
+  UnlockCost: 1000000
   Health: 10000
   Energy: 10000
   attackDamage: 100
@@ -28,6 +29,6 @@ MonoBehaviour:
   isDefensiveOnHit: 1
   ticksTillMate: 1000
   ticksTillDeath: 100000
-  ScorePerTick: 10
+  ScorePerTick: 3
   favouriteFood:
   - {fileID: 11400000, guid: 568c4fdf3eabbdb4189e263e875d0fc9, type: 2}

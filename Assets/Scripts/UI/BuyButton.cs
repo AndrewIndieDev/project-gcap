@@ -28,12 +28,18 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (Input.mouseScrollDelta.y > 0)
             {
                 buyAmount++;
-                buyAmountVisual.text = buyAmount.ToString("N0");
+                if (buyAmount > 20)
+                    buyAmount = 20;
+                buyAmountVisual.text = buyAmount.ToString();
+                buyReferenceName.text = $"{buyReference.AnimalName}\n({(buyReference.AnimalCost * (ulong)buyAmount).ToString("N0")})";
             }
             else if (Input.mouseScrollDelta.y < 0)
             {
                 buyAmount--;
-                buyAmountVisual.text = buyAmount.ToString("N0");
+                if (buyAmount < 1)
+                    buyAmount = 1;
+                buyAmountVisual.text = buyAmount.ToString();
+                buyReferenceName.text = $"{buyReference.AnimalName}\n({(buyReference.AnimalCost * (ulong)buyAmount).ToString("N0")})";
             }
         }
     }
@@ -53,7 +59,7 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
-        buyReferenceName.text = $"{buyReference.AnimalName} ({buyReference.AnimalCost.ToString("N0")})";
+        buyReferenceName.text = $"{buyReference.AnimalName}\n({(buyReference.AnimalCost * (ulong)buyAmount).ToString("N0")})";
         mouseEnterFeedbacks.PlayFeedbacks();
 
         if (!CameraController.Instance)

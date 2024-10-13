@@ -73,7 +73,7 @@ public class AIBase : MonoBehaviour
 
     private void OnTick(int tickIndex)
     {
-        if (health.CurrentHealth <= 0 || spawnFeedbacks.IsPlaying)
+        if (health.CurrentHealth <= 0 || spawnFeedbacks != null && spawnFeedbacks.IsPlaying)
             return;
 
         if (ticksTillMate > 0)

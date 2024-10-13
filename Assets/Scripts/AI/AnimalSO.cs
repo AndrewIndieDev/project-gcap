@@ -10,6 +10,7 @@ public class AnimalSO : ScriptableObject
     public FactionSO AnimalFaction;
     [Header("Shop Settings")]
     public ulong AnimalCost;
+    public ulong UnlockCost;
     [Header("Animal Stats")]
     public float Health = 100;
     public float Energy = 100;

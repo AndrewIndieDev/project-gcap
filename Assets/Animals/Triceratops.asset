@@ -19,13 +19,14 @@ MonoBehaviour:
   AnimalIcon: {fileID: 21300000, guid: ae6c1c654b1fbf849a1352676490c8cb, type: 3}
   AnimalFaction: {fileID: 11400000, guid: caf499e2db949134482a9af45ab87b8f, type: 2}
   AnimalCost: 6000
+  UnlockCost: 600000
   Health: 6000
   Energy: 6000
   attackDamage: 100
   babySpeed: 0.4
   Speed: 1
   runSpeed: 4.5
-  isDefensiveOnHit: 0
+  isDefensiveOnHit: 1
   ticksTillMate: 1000
   ticksTillDeath: 100000
   ScorePerTick: 2
