@@ -18,9 +18,6 @@ public class MenuManager : MonoBehaviour
     public async void Play()
     {
         menuFeedbacks.PlayFeedbacks();
-
-        await Task.Delay(600);
-
         GameManager.Instance.StartGame();
     }
 }
