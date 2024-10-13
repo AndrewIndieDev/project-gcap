@@ -32,5 +32,6 @@ public class UnlockButton : MonoBehaviour
         GameObject go = Instantiate(buyButtonPrefab, buyButtonParent);
         go.GetComponent<BuyButton>().buyReference = animal;
         unlocked = true;
+        unlockCost.text = "--- unlocked ---";
     }
 }

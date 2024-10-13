@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public static class Utilities
 {
@@ -54,5 +56,15 @@ public static class Utilities
     public static float RemapClamped(this float s, float a1, float a2, float b1, float b2)
     {
         return Mathf.Clamp(Remap(s, a1, a2, b1, b2), b1, b2);
+    }
+
+    /// <summary>
+    /// Opens a link in the devices default browser.
+    /// </summary>
+    /// <param name="url">URL to open.</param>
+    public static void OpenLink(string url)
+    {
+        string sanitizedUrl = Uri.EscapeUriString(url);
+        Application.OpenURL(sanitizedUrl);
     }
 }
