@@ -13,6 +13,11 @@ public class PlantState : BaseState
 
     public override void Enter(BaseState previousState)
     {
+        if (aiBase.transform.position == Vector3.zero)
+        {
+            aiBase.Destroy();
+        }
+
         aiBase.energy.DisableTick();
     }
 
