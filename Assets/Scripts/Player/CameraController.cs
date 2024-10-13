@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float movementTime = 5f;
     [SerializeField] float rotationAmount = .25f;
     
-    Vector3 newPosition;
+    public Vector3 newPosition;
     public Quaternion newRotation;
 
     [Header("Zoom")]
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float minZoom = 1f, maxZoom = 50f;
     [SerializeField] AnimationCurve zoomYAxis;
     [SerializeField] AnimationCurve zoomZAxis;
-    [SerializeField] float zoomProgress = .5f;
+    [SerializeField] public float zoomProgress = .5f;
     [SerializeField] Vector3 zoomPosition;
     [SerializeField] float zoomXRotation;
     [SerializeField] float zoomRotationClose, zoomRotationFar;

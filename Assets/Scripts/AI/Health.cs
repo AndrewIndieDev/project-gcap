@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
 
 public class Health : MonoBehaviour, IDamagable
 {
