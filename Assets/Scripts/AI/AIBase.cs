@@ -124,9 +124,16 @@ public class AIBase : MonoBehaviour
         if (!rangeSensor)
             return false;
 
-        if (rangeSensor.ClosestPrey != null && energy.CurrentEnergy <= energy.MaxEnergy * .6f)
-            return true;
-
+        if (rangeSensor.ClosestPrey != null && energy.CurrentEnergy <= energy.MaxEnergy * Mathf.Clamp(animal.energyToHunt, 0, 1))
+        {
+            if(rangeSensor.ClosestPrey.health.CurrentHealth <= 0)
+            {
+                if(energy.CurrentEnergy <= energy.MaxEnergy * Mathf.Clamp(animal.energyToEat, 0, 1))
+                    return true;
+                else return false;
+            } else
+                return true;
+        }    
         return false;
     }
 

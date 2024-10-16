@@ -20,12 +20,14 @@ MonoBehaviour:
   AnimalCost: 0
   UnlockCost: 0
   Health: 1
-  Energy: 30000
+  Energy: 3000
+  energyToHunt: 0.6
+  energyToEat: 0.6
+  isDefensiveOnHit: 0
   attackDamage: 0
   babySpeed: 0
   Speed: 0
   runSpeed: 0
-  isDefensiveOnHit: 0
   ticksTillMate: 0
   ticksTillDeath: 100000
   ScorePerTick: 0

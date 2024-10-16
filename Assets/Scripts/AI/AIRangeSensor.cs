@@ -14,6 +14,7 @@ public class AIRangeSensor : MonoBehaviour
     public List<AIBase> NearbyMates { get { return nearbyMates; } }
 
     [SerializeField] float detectionRange = 3f;
+    public float DetectionRange { get {  return detectionRange; } }
 
     float commitmentTimer, commitmentTime = 5f;
 

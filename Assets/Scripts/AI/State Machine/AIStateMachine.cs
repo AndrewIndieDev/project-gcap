@@ -74,12 +74,15 @@ public class AIStateMachine : MonoBehaviour
 
     public void OverrideOnHit()
     {
-        if (CurrentState == "SleepState")
+        if (currentState is SleepState)
             (currentState as SleepState).getUpImmediately = true;
         else
         {
             if (aiBase.animal.isDefensiveOnHit)
-                ChangeState(new HuntState(aiBase, this, true));
+            {
+                if(!(currentState is HuntState) && !(currentState is AttackState) && currentState != null)
+                    ChangeState(new HuntState(aiBase, this, aiBase.health.LastAttacker, true));
+            }
             else
                 ChangeState(new FleeState(aiBase, this));
         }

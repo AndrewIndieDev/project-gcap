@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -64,7 +65,12 @@ public static class Utilities
     /// <param name="url">URL to open.</param>
     public static void OpenLink(string url)
     {
-        string sanitizedUrl = Uri.EscapeUriString(url);
-        Application.OpenURL(sanitizedUrl);
+#if !UNITY_EDITOR && UNITY_WEBGL
+        //string sanitizedUrl = Uri.EscapeUriString(url);
+        OpenTab(url);
+#endif
     }
+
+    [DllImport("__Internal")]
+    private static extern void OpenTab(string url);
 }

@@ -24,6 +24,9 @@ public class WanderState : BaseState
         aiBase.ChangeAnimation(EAnimRef.WALK);
         wanderTime = Random.Range(wanderMin, wanderMax) /* / TickSystem.UpdateAnimalsEveryXTicks*/;
         wanderPointTimer = wanderPointTime;
+
+        //Reset last attacker if you reach this state again.
+        //aiBase.health.LastAttacker = null;
     }
 
     public override void Exit()
@@ -34,13 +37,16 @@ public class WanderState : BaseState
     {
         if (aiBase.CheckForPredators())
         {
-            stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
-            return;
+            if(aiBase.rangeSensor.ClosestPredator.health.CurrentHealth > 0)
+            {
+                stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
+                return;
+            }
         }
 
         if (aiBase.CheckForPrey())
         {
-            stateMachine.ChangeState(new HuntState(aiBase, stateMachine, false));
+            stateMachine.ChangeState(new HuntState(aiBase, stateMachine, aiBase.rangeSensor.ClosestPrey, false));
             return;
         }
 

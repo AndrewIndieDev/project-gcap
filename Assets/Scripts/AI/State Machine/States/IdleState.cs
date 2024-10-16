@@ -57,13 +57,17 @@ public class IdleState : BaseState
 
         if (aiBase.CheckForPredators())
         {
-            stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
+            if (aiBase.rangeSensor.ClosestPredator.health.CurrentHealth > 0)
+            {
+                stateMachine.ChangeState(new FleeState(aiBase, stateMachine));
+                return;
+            }
             return;
         }
 
         if (aiBase.CheckForPrey())
         {
-            stateMachine.ChangeState(new HuntState(aiBase, stateMachine, false));
+            stateMachine.ChangeState(new HuntState(aiBase, stateMachine, aiBase.rangeSensor.ClosestPrey, false));
             return;
         }
 

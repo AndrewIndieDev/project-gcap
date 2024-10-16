@@ -81,7 +81,7 @@ public class CameraController : MonoBehaviour
         if (enableMouseScrollInput && Input.mouseScrollDelta.y != 0)
         {
             zoomProgress -= Input.mouseScrollDelta.y * zoomSpeed * 2f;
-        } else if (cancelInput)
+        } else if (followTransform && cancelInput)
         {
             followTransform = null;
             newPosition = transform.position;
@@ -169,7 +169,7 @@ public class CameraController : MonoBehaviour
             zoomProgress += zoomSpeed;
 
         newPosition = Vector3.ClampMagnitude(newPosition, 80f);
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
+        transform.position = Vector3.Lerp(transform.position, newPosition, Time.unscaledDeltaTime * movementTime);
     }
 
     void HandleZoom()
@@ -178,11 +178,11 @@ public class CameraController : MonoBehaviour
         zoomProgress = Mathf.Clamp(zoomProgress, minZoom / maxZoom, 1);
         zoomPosition = new Vector3(0, zoomYAxis.Evaluate(zoomProgress) * maxZoom, -zoomZAxis.Evaluate(zoomProgress) * maxZoom);
 
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomPosition, Time.deltaTime * movementTime);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomPosition, Time.unscaledDeltaTime * movementTime);
 
         zoomXRotation = Mathf.Lerp(zoomRotationClose, zoomRotationFar, zoomProgress);
         zoomRotation = Quaternion.Euler(new Vector3(zoomXRotation, cameraTransform.localRotation.y, cameraTransform.localRotation.z));
-        cameraTransform.localRotation = Quaternion.Lerp(cameraTransform.localRotation, zoomRotation, Time.deltaTime * movementTime);
+        cameraTransform.localRotation = Quaternion.Lerp(cameraTransform.localRotation, zoomRotation, Time.unscaledDeltaTime * movementTime);
     }
 
     void HandleRotation()
@@ -208,6 +208,6 @@ public class CameraController : MonoBehaviour
 
             newRotation *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
         }
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.unscaledDeltaTime * movementTime);
     }
 }

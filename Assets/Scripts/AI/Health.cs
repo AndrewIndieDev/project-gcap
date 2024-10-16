@@ -12,6 +12,9 @@ public class Health : MonoBehaviour, IDamagable
     public UnityEvent pTakeDamage;
     public UnityEvent pOnDeath;
 
+    private AIBase lastAttacker;
+    public AIBase LastAttacker { get { return lastAttacker; } set { lastAttacker = LastAttacker; } }
+
     // Start is called before the first frame update
     public void Init(float max)
     {
@@ -26,9 +29,15 @@ public class Health : MonoBehaviour, IDamagable
         
     }
 
-    public void Damage(float amount, bool forceWakeUp = true) {
+    public void Damage(float amount, bool forceWakeUp = true, AIBase attacker = null) {
         if (health <= 0)
             return;
+
+        if (attacker)
+        {
+            lastAttacker = attacker;
+            //Debug.Log($"{lastAttacker.animal.AnimalName} has attacked me!");
+        }
 
         if (forceWakeUp)
             pTakeDamage.Invoke();
@@ -38,4 +47,28 @@ public class Health : MonoBehaviour, IDamagable
             pOnDeath.Invoke();
         }
     }
+
+    public void Damage(float amount, AIBase attacker = null)
+    {
+        Damage(amount, true, attacker);
+    }
+    /*
+    public void Damage(float amount, bool forceWakeUp = true, AIBase attacker = null)
+    {
+        if (health <= 0)
+            return;
+
+        lastAttacker = attacker;
+        Debug.Log($"{lastAttacker.animal.AnimalName} has attacked me!");
+
+        if (forceWakeUp)
+            pTakeDamage.Invoke();
+        health = Mathf.Clamp(health - amount, 0, maxHealth);
+
+        if (health <= 0)
+        {
+            pOnDeath.Invoke();
+        }
+    }
+    */
 }
