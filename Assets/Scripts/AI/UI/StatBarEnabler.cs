@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StatBarEnabler : MonoBehaviour
@@ -9,6 +7,7 @@ public class StatBarEnabler : MonoBehaviour
     public void Start()
     {
         transform.localScale = Vector3.one * statSizeScale;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void OnTriggerEnter(Collider other)

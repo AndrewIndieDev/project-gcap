@@ -1,7 +1,8 @@
+using AndrewDowsett.CommonObservers;
 using System.Collections;
 using UnityEngine;
 
-public class TickSystem : MonoBehaviour
+public class TickSystem : MonoBehaviour, IUpdateObserver
 {
     public delegate void Tick(int tickIndex);
     public static Tick onTick;
@@ -17,7 +18,13 @@ public class TickSystem : MonoBehaviour
     private int currentTickIndex = 0;
     private bool isRunning = false;
 
-    private void Update()
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        UpdateManager.RegisterObserver(this);
+    }
+
+    public void ObservedUpdate(float deltaTime)
     {
         if (!isRunning && startTicking)
         {
